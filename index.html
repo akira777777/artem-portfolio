@@ -296,48 +296,55 @@
       <div class="container">
         <h2 class="section-title reveal"><span class="sec-num">03</span><span class="sec-name">selected projects</span></h2>
         <p class="section-sub reveal">
-          Real client and personal projects — different niches, one goal: a
-          clear interface, solid structure and trust from the first screen.
+          Five public demos across service businesses, healthcare, travel and
+          data-heavy interfaces. Each case study explains what I built, the
+          stack I used and the implementation focus.
         </p>
 
         <!-- Project Filter & Search Bar -->
         <div class="projects-controls reveal">
           <div class="projects-search-box">
             <svg class="icon search-icon"><use href="#i-search"/></svg>
-            <input type="text" id="projectSearch" class="projects-search-input" placeholder="Search projects by title, stack (e.g. Next.js, TypeScript), or keywords..." aria-label="Search projects"/>
+            <label class="visually-hidden" for="projectSearch">Search projects</label>
+            <input type="search" id="projectSearch" class="projects-search-input" placeholder="Search by title, stack or keyword…" autocomplete="off" />
             <button type="button" id="clearSearchBtn" class="search-clear-btn" aria-label="Clear search" hidden>×</button>
           </div>
-          <div class="projects-filter-pills" id="projectFilterPills">
-            <button type="button" class="filter-pill active" data-filter="all">all <span class="pill-count">(5)</span></button>
-            <button type="button" class="filter-pill" data-filter="next">Next.js &amp; React</button>
-            <button type="button" class="filter-pill" data-filter="ts">TypeScript</button>
-            <button type="button" class="filter-pill" data-filter="tailwind">Tailwind CSS</button>
-            <button type="button" class="filter-pill" data-filter="fullapp">Full Applications</button>
+          <div class="projects-filter-pills" id="projectFilterPills" role="group" aria-label="Filter projects by technology">
+            <button type="button" class="filter-pill active" data-filter="all" aria-pressed="true">all <span class="pill-count">(5)</span></button>
+            <button type="button" class="filter-pill" data-filter="next" aria-pressed="false">Next.js &amp; React</button>
+            <button type="button" class="filter-pill" data-filter="ts" aria-pressed="false">TypeScript</button>
+            <button type="button" class="filter-pill" data-filter="tailwind" aria-pressed="false">Tailwind CSS</button>
+            <button type="button" class="filter-pill" data-filter="fullapp" aria-pressed="false">Full Applications</button>
           </div>
           <div class="projects-status-bar">
-            <span id="projectsCount" class="projects-count-label">Showing 5 of 5 projects</span>
+            <span id="projectsCount" class="projects-count-label" role="status" aria-live="polite">Showing 5 of 5 projects</span>
           </div>
         </div>
 
-        <div id="projectsEmpty" class="projects-empty hidden">
-          <p>No matching projects found for your search query.</p>
+        <div id="projectsEmpty" class="projects-empty" role="status" hidden>
+          <p>No projects match the current search and filter.</p>
           <button type="button" id="resetProjectsFilter" class="btn btn-ghost">reset search &amp; filters</button>
         </div>
 
         <div class="projects-grid stagger" id="projectsGrid">
 
-          <article class="project-card featured" role="button" tabindex="0"
+          <article class="project-card featured"
+            data-project-id="barbershop-iron-steel"
             data-tags="next react tailwind fullapp"
+            data-keywords="barbershop booking services pricing landing page responsive"
             data-img="assets/previews/barber.webp"
-            data-role="design &amp; build · next.js landing"
-            data-outcome="lighthouse 100 · booking-first flow">
+            data-status="public-demo"
+            data-role="UI design and frontend implementation"
+            data-challenge="Present services, team and pricing without slowing down the path to booking."
+            data-solution="Used a focused landing-page structure with clear service hierarchy and repeated booking calls to action."
+            data-outcome="Deployed a responsive, booking-focused public demo.">
             <div class="project-media">
               <div class="media-chrome" aria-hidden="true"><span class="chrome-dots"><i></i><i></i><i></i></span><span class="chrome-url">barber-am.vercel.app</span></div>
               <img src="assets/previews/barber.webp" alt="Screenshot of the Barbershop Iron &amp; Steel homepage" loading="lazy" decoding="async" width="1280" height="800" />
             </div>
             <header class="project-top">
               <span class="project-idx">p.01</span>
-              <span class="project-badge">key project</span>
+              <span class="project-badge">featured demo</span>
             </header>
             <h3 class="project-name">Barbershop Iron &amp; Steel</h3>
             <p class="project-desc">
@@ -351,16 +358,22 @@
               <li data-tech="Tailwind CSS">Tailwind CSS</li>
             </ul>
             <div class="project-foot">
-              <span class="lighthouse">lighthouse 100</span>
+              <span class="project-status">public demo</span>
+              <button type="button" class="link-arrow project-details-button" aria-label="Open Barbershop Iron and Steel case study">case study<span class="arr">→</span></button>
               <a class="link-arrow" href="https://barber-am.vercel.app/" target="_blank" rel="noopener noreferrer" aria-label="Open Barbershop Iron and Steel live demo in a new tab">live demo<span class="arr">→</span></a>
             </div>
           </article>
 
-          <article class="project-card" role="button" tabindex="0"
+          <article class="project-card"
+            data-project-id="rehabilitation-center-almaty"
             data-tags="next ts tailwind seo fullapp"
+            data-keywords="healthcare rehabilitation doctors programs documents reviews faq pricing routing"
             data-img="assets/previews/reba.webp"
-            data-role="multi-page site &amp; seo"
-            data-outcome="lighthouse 98 · trust-first structure">
+            data-status="public-demo"
+            data-role="Information architecture and frontend implementation"
+            data-challenge="Organize detailed treatment information for visitors who need clarity and reassurance."
+            data-solution="Built a multi-page structure around programs, doctors, documents, FAQ and enquiry paths."
+            data-outcome="Deployed an SEO-ready, multi-page healthcare public demo.">
             <div class="project-media">
               <div class="media-chrome" aria-hidden="true"><span class="chrome-dots"><i></i><i></i><i></i></span><span class="chrome-url">reba-eight.vercel.app</span></div>
               <img src="assets/previews/reba.webp" alt="Screenshot of the Rehabilitation Center, Almaty homepage" loading="lazy" decoding="async" width="1280" height="800" />
@@ -382,16 +395,22 @@
               <li data-tech="Tailwind CSS">Tailwind CSS</li>
             </ul>
             <div class="project-foot">
-              <span class="lighthouse">lighthouse 98</span>
+              <span class="project-status">public demo</span>
+              <button type="button" class="link-arrow project-details-button" aria-label="Open Rehabilitation Center Almaty case study">case study<span class="arr">→</span></button>
               <a class="link-arrow" href="https://reba-eight.vercel.app/" target="_blank" rel="noopener noreferrer" aria-label="Open Rehabilitation Center, Almaty live demo in a new tab">live demo<span class="arr">→</span></a>
             </div>
           </article>
 
-          <article class="project-card" role="button" tabindex="0"
+          <article class="project-card"
+            data-project-id="secrettravel"
             data-tags="next ts tailwind fullapp"
+            data-keywords="travel concierge hotels flights excursions multilingual russian english enquiry"
             data-img="assets/previews/secrettravel.webp"
-            data-role="multilingual concierge site"
-            data-outcome="lighthouse 99 · ru/en content">
+            data-status="public-demo"
+            data-role="Responsive frontend and multilingual content structure"
+            data-challenge="Explain several concierge services while keeping the enquiry path easy to find."
+            data-solution="Grouped services, pricing and common questions into a clear RU/EN responsive flow."
+            data-outcome="Deployed a multilingual travel-concierge public demo.">
             <div class="project-media">
               <div class="media-chrome" aria-hidden="true"><span class="chrome-dots"><i></i><i></i><i></i></span><span class="chrome-url">secrettravel.vercel.app</span></div>
               <img src="assets/previews/secrettravel.webp" alt="Screenshot of the SecretTravel homepage" loading="lazy" decoding="async" width="1280" height="800" />
@@ -413,16 +432,22 @@
               <li data-tech="Crypto">Crypto</li>
             </ul>
             <div class="project-foot">
-              <span class="lighthouse">lighthouse 99</span>
+              <span class="project-status">public demo</span>
+              <button type="button" class="link-arrow project-details-button" aria-label="Open SecretTravel case study">case study<span class="arr">→</span></button>
               <a class="link-arrow" href="https://secrettravel.vercel.app/" target="_blank" rel="noopener noreferrer" aria-label="Open SecretTravel live demo in a new tab">live demo<span class="arr">→</span></a>
             </div>
           </article>
 
-          <article class="project-card" role="button" tabindex="0"
+          <article class="project-card"
+            data-project-id="betz-sportsbook"
             data-tags="next react fullapp"
+            data-keywords="sports matches odds events dense data responsive dashboard interface"
             data-img="assets/previews/betz.webp"
-            data-role="sports data interface"
-            data-outcome="lighthouse 95 · dense live data">
+            data-status="public-demo"
+            data-role="Data-dense frontend interface"
+            data-challenge="Make a large amount of match and odds information easy to scan on different screens."
+            data-solution="Used strong grouping, compact controls and responsive hierarchy for fast comparison."
+            data-outcome="Deployed a responsive sportsbook interface public demo.">
             <div class="project-media">
               <div class="media-chrome" aria-hidden="true"><span class="chrome-dots"><i></i><i></i><i></i></span><span class="chrome-url">bwin-1x.vercel.app</span></div>
               <img src="assets/previews/betz.webp" alt="Screenshot of the BETZ Sportsbook interface" loading="lazy" decoding="async" width="1280" height="800" />
@@ -439,19 +464,25 @@
             <ul class="tag-list">
               <li data-tech="Next.js">Next.js</li>
               <li data-tech="React">React</li>
-              <li data-tech="Real-time data">Real-time data</li>
+              <li data-tech="Data UI">Data UI</li>
             </ul>
             <div class="project-foot">
-              <span class="lighthouse">lighthouse 95</span>
+              <span class="project-status">public demo</span>
+              <button type="button" class="link-arrow project-details-button" aria-label="Open BETZ Sportsbook case study">case study<span class="arr">→</span></button>
               <a class="link-arrow" href="https://bwin-1x.vercel.app/" target="_blank" rel="noopener noreferrer" aria-label="Open BETZ Sportsbook live demo in a new tab">live demo<span class="arr">→</span></a>
             </div>
           </article>
 
-          <article class="project-card" role="button" tabindex="0"
+          <article class="project-card"
+            data-project-id="vakalova-dental"
             data-tags="next ts fullapp"
+            data-keywords="dental clinic healthcare services doctors appointment booking responsive"
             data-img="assets/previews/dental.webp"
-            data-role="clinic website &amp; booking"
-            data-outcome="lighthouse 97 · calm ui/ux">
+            data-status="public-demo"
+            data-role="UI design and frontend implementation"
+            data-challenge="Present clinical services and the doctor team in a calm interface with a clear appointment path."
+            data-solution="Used restrained visual hierarchy, readable service sections and prominent booking actions."
+            data-outcome="Deployed a responsive dental-clinic public demo.">
             <div class="project-media">
               <div class="media-chrome" aria-hidden="true"><span class="chrome-dots"><i></i><i></i><i></i></span><span class="chrome-url">dental-clinic-vakalova.vercel.app</span></div>
               <img src="assets/previews/dental.webp" alt="Screenshot of the Vakalova Dental clinic homepage" loading="lazy" decoding="async" width="1280" height="800" />
@@ -471,16 +502,14 @@
               <li data-tech="UI/UX">UI/UX</li>
             </ul>
             <div class="project-foot">
-              <span class="lighthouse">lighthouse 97</span>
+              <span class="project-status">public demo</span>
+              <button type="button" class="link-arrow project-details-button" aria-label="Open Vakalova Dental case study">case study<span class="arr">→</span></button>
               <a class="link-arrow" href="https://dental-clinic-vakalova.vercel.app/" target="_blank" rel="noopener noreferrer" aria-label="Open Vakalova Dental live demo in a new tab">live demo<span class="arr">→</span></a>
             </div>
           </article>
 
         </div>
-        <p class="note reveal">
-          older project archive:
-          <a class="link-arrow" href="https://portfolio-am-akirtas-projects.vercel.app/" target="_blank" rel="noopener noreferrer" aria-label="Open older project archive in a new tab">portfolio-am-akirtas-projects.vercel.app<span class="arr">→</span></a>
-        </p>
+        <p class="note reveal">All five public demo links were checked on 26 July 2026.</p>
       </div>
     </section>
 
@@ -529,23 +558,23 @@
           <div class="highlight-card">
             <div class="highlight-head">
               <span class="highlight-badge">01</span>
-              <h3>Performance &amp; Speed</h3>
+              <h3>Fast by default</h3>
             </div>
-            <p>95–100 Lighthouse scores across all deployments. Clean code splits, image optimization, and zero layout shift.</p>
+            <p>Small runtime bundles, responsive media, lazy loading and motion that never blocks the interface.</p>
           </div>
           <div class="highlight-card">
             <div class="highlight-head">
               <span class="highlight-badge">02</span>
-              <h3>Responsive &amp; Adaptive</h3>
+              <h3>Resilient interfaces</h3>
             </div>
-            <p>Fluid typography, container queries, and mobile-first touch optimization that feels native on any device.</p>
+            <p>Explicit empty, loading, error and success states, with controls designed for keyboards and touch.</p>
           </div>
           <div class="highlight-card">
             <div class="highlight-head">
               <span class="highlight-badge">03</span>
-              <h3>SEO &amp; Accessibility</h3>
+              <h3>Accessible foundations</h3>
             </div>
-            <p>Structured Schema.org markup, semantic HTML5, keyboard accessibility protection, and crisp contrast ratios.</p>
+            <p>Semantic HTML, structured data, visible focus states, reduced-motion support and readable contrast.</p>
           </div>
         </div>
       </div>
@@ -573,8 +602,9 @@
           </div>
         </div>
         <p class="note reveal">
-          czech labour market: free access as a graduate of a czech secondary
-          school — no work permit or employer visa sponsorship required.
+          Czech secondary-school graduate with free access to the Czech labour
+          market under §98; a valid residence status is still required.
+          <a class="link-arrow" href="https://ipc.gov.cz/en/life-in-the-czech-republic/free-access-to-the-labour-market/" target="_blank" rel="noopener noreferrer">official guidance<span class="arr">→</span></a>
         </p>
       </div>
     </section>
@@ -585,7 +615,8 @@
         <h2 class="section-title reveal"><span class="sec-num">07</span><span class="sec-name">get in touch</span></h2>
         <p class="contact-lead reveal">
           Open to junior frontend / web developer roles, internships and project
-          work in Prague or remote. I reply <em class="serif-accent">quickly</em> and to the point.
+          work in Prague or remote. Send a concise message and I will reply
+          <em class="serif-accent">directly</em>.
         </p>
 
         <div class="contact-grid reveal">
@@ -593,36 +624,42 @@
           <div class="contact-form-wrap">
             <div class="preset-buttons-row">
               <span class="preset-label">quick topics:</span>
-              <button type="button" class="preset-btn" data-subject="Junior Developer Role / Internship">💼 Junior Role</button>
-              <button type="button" class="preset-btn" data-subject="Freelance / Landing Page Project">🚀 Web Project</button>
-              <button type="button" class="preset-btn" data-subject="General Inquiry / Coffee Chat">☕ Say Hello</button>
+              <button type="button" class="preset-btn" data-subject="Junior Developer Role / Internship" data-message="Hi Artem,&#10;&#10;I would like to discuss a junior frontend opportunity.">💼 Junior Role</button>
+              <button type="button" class="preset-btn" data-subject="Web Project Inquiry" data-message="Hi Artem,&#10;&#10;I would like to discuss a web project.">🚀 Web Project</button>
+              <button type="button" class="preset-btn" data-subject="General Inquiry" data-message="Hi Artem,&#10;&#10;I came across your portfolio and would like to connect.">☕ Say Hello</button>
             </div>
-            <form id="contactForm" class="contact-form" novalidate>
+            <form id="contactForm" class="contact-form" action="/api/contact" method="post" novalidate>
+              <div class="honeypot-field" aria-hidden="true">
+                <label for="contactWebsite">Website</label>
+                <input type="text" id="contactWebsite" name="website" tabindex="-1" autocomplete="off" />
+              </div>
               <div class="form-row-2">
                 <div class="form-group">
                   <label for="contactName">Your Name <span class="required">*</span></label>
-                  <input type="text" id="contactName" name="name" placeholder="Alex Novák" required />
-                  <span class="field-error" id="nameError"></span>
+                  <input type="text" id="contactName" name="name" placeholder="Alex Novák" minlength="2" maxlength="80" autocomplete="name" aria-describedby="nameError" required />
+                  <span class="field-error" id="nameError" aria-live="polite"></span>
                 </div>
                 <div class="form-group">
                   <label for="contactEmail">Your Email <span class="required">*</span></label>
-                  <input type="email" id="contactEmail" name="email" placeholder="alex@company.com" required />
-                  <span class="field-error" id="emailError"></span>
+                  <input type="email" id="contactEmail" name="email" placeholder="alex@company.com" maxlength="254" inputmode="email" autocomplete="email" aria-describedby="emailError" required />
+                  <span class="field-error" id="emailError" aria-live="polite"></span>
                 </div>
               </div>
               <div class="form-group">
                 <label for="contactSubject">Subject</label>
-                <input type="text" id="contactSubject" name="subject" placeholder="Junior Frontend Role at..." />
+                <input type="text" id="contactSubject" name="subject" placeholder="Junior Frontend role at…" maxlength="120" autocomplete="off" />
               </div>
               <div class="form-group">
                 <label for="contactMessage">Message <span class="required">*</span></label>
-                <textarea id="contactMessage" name="message" rows="4" placeholder="Hi Artem, we're looking for a frontend developer in Prague..." required></textarea>
-                <span class="field-error" id="messageError"></span>
+                <textarea id="contactMessage" name="message" rows="5" placeholder="Hi Artem, we are looking for a frontend developer in Prague…" minlength="10" maxlength="3000" aria-describedby="messageError" required></textarea>
+                <span class="field-error" id="messageError" aria-live="polite"></span>
               </div>
               <button type="submit" id="contactSubmitBtn" class="btn btn-primary btn-submit">
                 <svg class="icon"><use href="#i-send"/></svg>
                 <span>Send Message</span>
               </button>
+              <p id="contactFormStatus" class="form-status" role="status" aria-live="polite"></p>
+              <p class="form-privacy">Your details are used only to reply to this message. Prefer email? <a href="mailto:artemmikhailov20031001@gmail.com">Open your email app.</a></p>
             </form>
           </div>
 
@@ -633,7 +670,7 @@
               <span class="contact-value">artemmikhailov20031001@gmail.com</span>
               <div class="contact-actions">
                 <a href="mailto:artemmikhailov20031001@gmail.com" class="card-action-link">send email →</a>
-                <button type="button" class="copy-action-btn" data-copy="artemmikhailov20031001@gmail.com" title="Copy email address">
+                <button type="button" class="copy-action-btn" data-copy="artemmikhailov20031001@gmail.com" aria-label="Copy email address">
                   <svg class="icon"><use href="#i-copy"/></svg> copy
                 </button>
               </div>
@@ -643,7 +680,7 @@
               <span class="contact-value">+420&nbsp;737&nbsp;500&nbsp;587</span>
               <div class="contact-actions">
                 <a href="tel:+420737500587" class="card-action-link">call&nbsp;now&nbsp;→</a>
-                <button type="button" class="copy-action-btn" data-copy="+420737500587" title="Copy phone number">
+                <button type="button" class="copy-action-btn" data-copy="+420737500587" aria-label="Copy phone number">
                   <svg class="icon"><use href="#i-copy"/></svg> copy
                 </button>
               </div>
@@ -677,30 +714,46 @@
   </footer>
 
   <!-- Project detail modal -->
-  <div id="projectModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-    <div class="modal-content">
+  <dialog id="projectModal" class="modal-overlay" aria-labelledby="modalTitle">
+    <article class="modal-content">
       <div class="modal-header">
-        <h2 id="modalTitle" class="modal-title">Project Title</h2>
+        <div>
+          <p id="modalStatus" class="modal-eyebrow"></p>
+          <h2 id="modalTitle" class="modal-title"></h2>
+        </div>
         <button type="button" id="closeModalButton" class="modal-close" aria-label="Close modal">
           <svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 18L18 6M6 6l12 12"/></svg>
         </button>
       </div>
-      <div class="modal-media"><img id="modalImage" src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" alt="" /></div>
-      <p id="modalDescription" class="modal-desc">No description available.</p>
+      <div id="modalMedia" class="modal-media"><img id="modalImage" alt="" /></div>
+      <p id="modalDescription" class="modal-desc"></p>
       <dl class="modal-meta">
-        <div><dt>role</dt><dd id="modalRole">—</dd></div>
-        <div><dt>outcome</dt><dd id="modalOutcome">—</dd></div>
+        <div id="modalRoleRow"><dt>role</dt><dd id="modalRole"></dd></div>
+        <div id="modalOutcomeRow"><dt>result</dt><dd id="modalOutcome"></dd></div>
       </dl>
-      <div id="modalTechnologies" class="modal-techs"></div>
-      <div class="modal-actions">
-        <a id="modalLink" href="#" target="_blank" rel="noopener noreferrer" class="btn btn-primary">live demo<span class="btn-arrow">→</span></a>
+      <div class="modal-case-study">
+        <section id="modalChallengeSection">
+          <h3>Challenge</h3>
+          <p id="modalChallenge"></p>
+        </section>
+        <section id="modalSolutionSection">
+          <h3>Approach</h3>
+          <p id="modalSolution"></p>
+        </section>
       </div>
-    </div>
-  </div>
+      <div>
+        <h3 class="modal-section-title">Stack</h3>
+        <div id="modalTechnologies" class="modal-techs"></div>
+      </div>
+      <div class="modal-actions">
+        <a id="modalLink" target="_blank" rel="noopener noreferrer" class="btn btn-primary">open live demo<span class="btn-arrow">→</span></a>
+      </div>
+    </article>
+  </dialog>
 
   <!-- CV Preview Modal -->
-  <div id="cvModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="cvModalTitle">
-    <div class="modal-content cv-modal-content">
+  <dialog id="cvModal" class="modal-overlay" aria-labelledby="cvModalTitle">
+    <article class="modal-content cv-modal-content">
       <div class="modal-header">
         <div>
           <h2 id="cvModalTitle" class="modal-title">Curriculum Vitae</h2>
@@ -714,16 +767,25 @@
       <div class="cv-preview-body">
         <div class="cv-section">
           <h3>Summary</h3>
-          <p>Junior Frontend and Web Developer based in Prague with Czech IT Maturita diploma (2024). Focused on building fast, responsive, and SEO-optimized web applications with Next.js, React, TypeScript, and modern CSS.</p>
+          <p>Prague-based junior frontend and web developer with a Czech IT Maturita completed in 2024. Builds and deploys responsive interfaces with Next.js, React, TypeScript, JavaScript, HTML and CSS.</p>
         </div>
 
         <div class="cv-section">
           <h3>Technical Stack</h3>
           <ul class="cv-list">
             <li><strong>Frontend:</strong> Next.js, React, TypeScript, JavaScript (ES6+), HTML5, CSS3, Tailwind CSS, Responsive Design</li>
-            <li><strong>Web Development:</strong> REST APIs, Node.js basics, Vercel deployment, Web performance &amp; Lighthouse optimization</li>
+            <li><strong>Web Development:</strong> REST APIs, Node.js fundamentals, form validation, Vercel deployment and web performance</li>
             <li><strong>IT Foundations:</strong> SQL, Databases, Networking, Operating Systems, Software/Hardware support</li>
-            <li><strong>Tools &amp; Workflow:</strong> Git, GitHub, VS Code, Figma inspect, basic SEO &amp; Accessibility (a11y)</li>
+            <li><strong>Tools &amp; Workflow:</strong> Git, GitHub, VS Code, Figma inspection, SEO foundations and accessibility testing</li>
+          </ul>
+        </div>
+
+        <div class="cv-section">
+          <h3>Selected Work</h3>
+          <ul class="cv-list">
+            <li><strong>Barbershop Iron &amp; Steel:</strong> responsive booking-focused landing page with a clear services and pricing hierarchy.</li>
+            <li><strong>Rehabilitation Center:</strong> multi-page healthcare interface with programs, doctors, documents, FAQ and enquiry paths.</li>
+            <li><strong>BETZ Sportsbook:</strong> responsive data-dense interface for scanning matches, events and odds.</li>
           </ul>
         </div>
 
@@ -737,8 +799,9 @@
         <div class="cv-section">
           <h3>Languages &amp; Work Status</h3>
           <p>• <strong>Russian:</strong> Native<br/>
-          • <strong>Czech:</strong> B2 Professional (Maturita completed in Czech) — <strong>Free access to the Czech labor market (No visa sponsorship needed)</strong><br/>
-          • <strong>English:</strong> B2 Intermediate (Maturita exam level)</p>
+          • <strong>Czech:</strong> B2 (Maturita completed in Czech)<br/>
+          • <strong>English:</strong> B2 (Maturita exam level)<br/>
+          • <strong>Work status:</strong> Free access to the Czech labour market as a Czech secondary-school graduate; valid residence status required.</p>
         </div>
       </div>
 
@@ -750,13 +813,13 @@
           <svg class="icon"><use href="#i-mail"/></svg> Request Interview
         </a>
       </div>
-    </div>
-  </div>
+    </article>
+  </dialog>
 
   <!-- Toast Notification Container -->
   <div id="toastContainer" class="toast-container" aria-live="polite" aria-atomic="true"></div>
 
-  <script src="script.js?v=20260726-3"></script>
+  <script type="module" src="/script.js"></script>
 </body>
 </html>
 
