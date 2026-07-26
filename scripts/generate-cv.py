@@ -329,7 +329,7 @@ def build_pdf(output_path: Path) -> None:
         value="artemmikhailov20031001@gmail.com",
         url="mailto:artemmikhailov20031001@gmail.com",
         x=contact_x,
-        y=header_top - 36,
+        y=header_top - 32,
         width=contact_width,
     )
     draw_contact(
@@ -338,7 +338,7 @@ def build_pdf(output_path: Path) -> None:
         value="+420 737 500 587",
         url="tel:+420737500587",
         x=contact_x,
-        y=header_top - 70,
+        y=header_top - 62,
         width=contact_width,
     )
     draw_contact(
@@ -347,7 +347,7 @@ def build_pdf(output_path: Path) -> None:
         value="artem-portfolio-ten.vercel.app",
         url="https://artem-portfolio-ten.vercel.app/",
         x=contact_x,
-        y=header_top - 104,
+        y=header_top - 92,
         width=contact_width,
     )
     draw_contact(
@@ -356,7 +356,7 @@ def build_pdf(output_path: Path) -> None:
         value="github.com/akira777777",
         url="https://github.com/akira777777",
         x=contact_x,
-        y=header_top - 138,
+        y=header_top - 122,
         width=contact_width,
     )
 
@@ -457,16 +457,51 @@ def build_pdf(output_path: Path) -> None:
         y=y,
         width=main_width,
     )
+    y = draw_project(
+        pdf,
+        index="P.04",
+        title="SecretTravel",
+        role="Responsive frontend and multilingual content structure",
+        description=(
+            "RU / EN travel-concierge demo that organizes hotels, flights, "
+            "excursions, pricing and enquiries into a clear responsive flow."
+        ),
+        stack="NEXT.JS / TYPESCRIPT / TAILWIND CSS / MULTILINGUAL UI",
+        url_label="LIVE DEMO",
+        url="https://secrettravel.vercel.app/",
+        x=main_x,
+        y=y,
+        width=main_width,
+    )
+    y = draw_project(
+        pdf,
+        index="P.05",
+        title="Vakalova Dental",
+        role="UI design and frontend implementation",
+        description=(
+            "Calm dental-clinic interface with readable service sections, "
+            "doctor profiles and a prominent appointment path."
+        ),
+        stack="NEXT.JS / TYPESCRIPT / RESPONSIVE UI",
+        url_label="LIVE DEMO",
+        url="https://dental-clinic-vakalova.vercel.app/",
+        x=main_x,
+        y=y,
+        width=main_width,
+    )
     pdf.setFillColor(TEXT_DIM)
     pdf.setFont("CVSans", 6.8)
-    pdf.drawString(main_x + 25, y + 3, "Additional public demos: SecretTravel and Vakalova Dental.")
     portfolio_link_width = pdfmetrics.stringWidth(
-        "View all five case studies", "CVSansBold", 6.8
+        "View the complete case studies on the portfolio", "CVSansBold", 6.8
     )
     portfolio_link_x = main_x + main_width - portfolio_link_width
     pdf.setFillColor(MINT_DARK)
     pdf.setFont("CVSansBold", 6.8)
-    pdf.drawString(portfolio_link_x, y + 3, "View all five case studies")
+    pdf.drawString(
+        portfolio_link_x,
+        y + 3,
+        "View the complete case studies on the portfolio",
+    )
     pdf.linkURL(
         "https://artem-portfolio-ten.vercel.app/#projects",
         (portfolio_link_x, y + 1, portfolio_link_x + portfolio_link_width, y + 11),
