@@ -37,14 +37,15 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css?v=20260726-2" />
+  <noscript><style>.line-inner,.reveal,.stagger>*{opacity:1!important;transform:none!important;transition:none!important}</style></noscript>
 </head>
 <body>
-  <a class="skip-link" href="#about">Skip to content</a>
+  <a class="skip-link" href="#main-content">Skip to content</a>
   <div class="scroll-progress" aria-hidden="true"></div>
 
   <!-- Inline SVG icon sprite (stroke glyphs, inherit currentColor) -->
-  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
     <symbol id="i-next" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 15.5v-7l5 7v-7"/></symbol>
     <symbol id="i-react" viewBox="0 0 24 24"><ellipse cx="12" cy="12" rx="10" ry="4"/><ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(120 12 12)"/><circle cx="12" cy="12" r="1.4" fill="currentColor" stroke="none"/></symbol>
     <symbol id="i-ts" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2.5"/><path d="M7 9.5h4.5M9.25 9.5V16"/><path d="M18 10.6c0-1.2-1.1-2.1-2.5-2.1-1.5 0-2.6.8-2.6 2 0 2.8 5.1 1.5 5.1 4.2 0 1.3-1.1 2.2-2.7 2.2-1.5 0-2.6-.8-2.7-2"/></symbol>
@@ -74,7 +75,7 @@
     </div>
   </header>
 
-  <main>
+  <main id="main-content" tabindex="-1">
     <!-- Hero -->
     <section class="hero">
       <!-- Animated aurora background + faint grid (decorative) -->
@@ -115,7 +116,7 @@
     <!-- About -->
     <section id="about" class="section">
       <div class="container">
-        <h3 class="section-title reveal"><span class="sec-num">01</span><span class="sec-name">about me</span></h3>
+        <h2 class="section-title reveal"><span class="sec-num">01</span><span class="sec-name">about me</span></h2>
         <div class="about-grid">
           <p class="reveal">
             Junior frontend and web developer with Czech secondary education in
@@ -138,10 +139,10 @@
     <!-- Skills -->
     <section id="skills" class="section">
       <div class="container">
-        <h3 class="section-title reveal"><span class="sec-num">02</span><span class="sec-name">technical skills</span></h3>
+        <h2 class="section-title reveal"><span class="sec-num">02</span><span class="sec-name">technical skills</span></h2>
         <div class="skills-grid stagger">
           <div class="skill-block">
-            <h4 class="skill-head"><svg class="icon"><use href="#i-react"/></svg><span class="skill-idx">s.01</span>frontend</h4>
+            <h3 class="skill-head"><svg class="icon"><use href="#i-react"/></svg><span class="skill-idx">s.01</span>frontend</h3>
             <ul class="tag-list">
               <li><svg class="icon"><use href="#i-next"/></svg>Next.js</li>
               <li><svg class="icon"><use href="#i-react"/></svg>React</li>
@@ -154,7 +155,7 @@
             </ul>
           </div>
           <div class="skill-block">
-            <h4 class="skill-head"><svg class="icon"><use href="#i-node"/></svg><span class="skill-idx">s.02</span>web development</h4>
+            <h3 class="skill-head"><svg class="icon"><use href="#i-node"/></svg><span class="skill-idx">s.02</span>web development</h3>
             <ul class="tag-list">
               <li>REST API integration</li><li>Node.js basics</li>
               <li>Authentication concepts</li><li>Browser-based apps</li>
@@ -162,7 +163,7 @@
             </ul>
           </div>
           <div class="skill-block">
-            <h4 class="skill-head"><svg class="icon"><use href="#i-db"/></svg><span class="skill-idx">s.03</span>it foundations</h4>
+            <h3 class="skill-head"><svg class="icon"><use href="#i-db"/></svg><span class="skill-idx">s.03</span>it foundations</h3>
             <ul class="tag-list">
               <li>Programming</li><li>SQL &amp; databases</li>
               <li>Operating systems</li><li>Computer networks</li>
@@ -170,7 +171,7 @@
             </ul>
           </div>
           <div class="skill-block">
-            <h4 class="skill-head"><svg class="icon"><use href="#i-git"/></svg><span class="skill-idx">s.04</span>working approach</h4>
+            <h3 class="skill-head"><svg class="icon"><use href="#i-git"/></svg><span class="skill-idx">s.04</span>working approach</h3>
             <ul class="tag-list">
               <li>Git</li><li>SEO basics</li><li>Accessibility</li>
               <li>UI / UX attention</li><li>Problem solving</li>
@@ -184,7 +185,7 @@
     <!-- Projects -->
     <section id="projects" class="section">
       <div class="container">
-        <h3 class="section-title reveal"><span class="sec-num">03</span><span class="sec-name">selected projects</span></h3>
+        <h2 class="section-title reveal"><span class="sec-num">03</span><span class="sec-name">selected projects</span></h2>
         <p class="section-sub reveal">
           Real client and personal projects — different niches, one goal: a
           clear interface, solid structure and trust from the first screen.
@@ -196,7 +197,7 @@
               <span class="project-idx">p.01</span>
               <span class="project-badge">key project</span>
             </header>
-            <h4 class="project-name">Barbershop Iron &amp; Steel</h4>
+            <h3 class="project-name">Barbershop Iron &amp; Steel</h3>
             <p class="project-desc">
               Landing page for a premium barbershop with services, barbers,
               pricing and online booking — built to show the venue's style and
@@ -207,7 +208,7 @@
             </ul>
             <div class="project-foot">
               <span class="lighthouse">lighthouse 100</span>
-              <a class="link-arrow" href="https://barber-am.vercel.app/" target="_blank" rel="noopener noreferrer">live demo<span class="arr">→</span></a>
+              <a class="link-arrow" href="https://barber-am.vercel.app/" target="_blank" rel="noopener noreferrer" aria-label="Open Barbershop Iron and Steel live demo in a new tab">live demo<span class="arr">→</span></a>
             </div>
           </article>
 
@@ -215,7 +216,7 @@
             <header class="project-top">
               <span class="project-idx">p.02</span>
             </header>
-            <h4 class="project-name">Rehabilitation Center, Almaty</h4>
+            <h3 class="project-name">Rehabilitation Center, Almaty</h3>
             <p class="project-desc">
               Multi-page site for a rehabilitation center where trust matters:
               treatment programs, doctors, documents, reviews, FAQ, pricing and
@@ -227,7 +228,7 @@
             </ul>
             <div class="project-foot">
               <span class="lighthouse">lighthouse 98</span>
-              <a class="link-arrow" href="https://reba-eight.vercel.app/" target="_blank" rel="noopener noreferrer">live demo<span class="arr">→</span></a>
+              <a class="link-arrow" href="https://reba-eight.vercel.app/" target="_blank" rel="noopener noreferrer" aria-label="Open Rehabilitation Center, Almaty live demo in a new tab">live demo<span class="arr">→</span></a>
             </div>
           </article>
 
@@ -235,7 +236,7 @@
             <header class="project-top">
               <span class="project-idx">p.03</span>
             </header>
-            <h4 class="project-name">SecretTravel</h4>
+            <h3 class="project-name">SecretTravel</h3>
             <p class="project-desc">
               Concierge service for booking hotels, flights and excursions.
               RU/EN multilingual content, clear application flow, pricing
@@ -247,7 +248,7 @@
             </ul>
             <div class="project-foot">
               <span class="lighthouse">lighthouse 99</span>
-              <a class="link-arrow" href="https://secrettravel.vercel.app/" target="_blank" rel="noopener noreferrer">live demo<span class="arr">→</span></a>
+              <a class="link-arrow" href="https://secrettravel.vercel.app/" target="_blank" rel="noopener noreferrer" aria-label="Open SecretTravel live demo in a new tab">live demo<span class="arr">→</span></a>
             </div>
           </article>
 
@@ -255,7 +256,7 @@
             <header class="project-top">
               <span class="project-idx">p.04</span>
             </header>
-            <h4 class="project-name">BETZ Sportsbook</h4>
+            <h3 class="project-name">BETZ Sportsbook</h3>
             <p class="project-desc">
               Sports platform interface with matches, events and live odds —
               dense data presentation, clear hierarchy and fast access to key
@@ -266,7 +267,7 @@
             </ul>
             <div class="project-foot">
               <span class="lighthouse">lighthouse 95</span>
-              <a class="link-arrow" href="https://bwin-1x.vercel.app/" target="_blank" rel="noopener noreferrer">live demo<span class="arr">→</span></a>
+              <a class="link-arrow" href="https://bwin-1x.vercel.app/" target="_blank" rel="noopener noreferrer" aria-label="Open BETZ Sportsbook live demo in a new tab">live demo<span class="arr">→</span></a>
             </div>
           </article>
 
@@ -274,7 +275,7 @@
             <header class="project-top">
               <span class="project-idx">p.05</span>
             </header>
-            <h4 class="project-name">Vakalova Dental</h4>
+            <h3 class="project-name">Vakalova Dental</h3>
             <p class="project-desc">
               Website for a dental clinic with a calm, trustworthy interface:
               service structure, doctor team and appointment booking designed
@@ -285,14 +286,14 @@
             </ul>
             <div class="project-foot">
               <span class="lighthouse">lighthouse 97</span>
-              <a class="link-arrow" href="https://dental-clinic-vakalova.vercel.app/" target="_blank" rel="noopener noreferrer">live demo<span class="arr">→</span></a>
+              <a class="link-arrow" href="https://dental-clinic-vakalova.vercel.app/" target="_blank" rel="noopener noreferrer" aria-label="Open Vakalova Dental live demo in a new tab">live demo<span class="arr">→</span></a>
             </div>
           </article>
 
         </div>
         <p class="note reveal">
           older project archive:
-          <a class="link-arrow" href="https://portfolio-am-akirtas-projects.vercel.app/" target="_blank" rel="noopener noreferrer">portfolio-am-akirtas-projects.vercel.app<span class="arr">→</span></a>
+          <a class="link-arrow" href="https://portfolio-am-akirtas-projects.vercel.app/" target="_blank" rel="noopener noreferrer" aria-label="Open older project archive in a new tab">portfolio-am-akirtas-projects.vercel.app<span class="arr">→</span></a>
         </p>
       </div>
     </section>
@@ -300,12 +301,12 @@
     <!-- Education -->
     <section id="education" class="section">
       <div class="container">
-        <h3 class="section-title reveal"><span class="sec-num">04</span><span class="sec-name">education</span></h3>
+        <h2 class="section-title reveal"><span class="sec-num">04</span><span class="sec-name">education</span></h2>
         <div class="timeline">
           <div class="timeline-item reveal">
             <span class="timeline-date">2024</span>
             <div class="timeline-body">
-              <h4>Maturita — Information Technology</h4>
+              <h3>Maturita — Information Technology</h3>
               <p class="timeline-sub">
                 Vyšší odborná škola informačních studií a Střední škola
                 elektrotechniky, multimédií a informatiky — Prague 9
@@ -321,7 +322,7 @@
           <div class="timeline-item reveal">
             <span class="timeline-date">2022 – 2024</span>
             <div class="timeline-body">
-              <h4>Customer-facing hospitality roles</h4>
+              <h3>Customer-facing hospitality roles</h3>
               <p class="timeline-sub">Prague</p>
               <p>
                 Worked in busy team environments, handled customer requests and
@@ -337,21 +338,21 @@
     <!-- Languages -->
     <section id="languages" class="section">
       <div class="container">
-        <h3 class="section-title reveal"><span class="sec-num">05</span><span class="sec-name">languages &amp; work authorization</span></h3>
+        <h2 class="section-title reveal"><span class="sec-num">05</span><span class="sec-name">languages &amp; work authorization</span></h2>
         <div class="langs stagger">
           <div class="lang-row">
             <span class="lang-name">russian</span>
-            <div class="progress"><div class="progress-bar" style="--level: 100%"></div></div>
+            <div class="progress" role="progressbar" aria-label="Russian proficiency" aria-valuemin="0" aria-valuemax="100" aria-valuenow="100"><div class="progress-bar" style="--level: 100%"></div></div>
             <span class="lang-level">native</span>
           </div>
           <div class="lang-row">
             <span class="lang-name">czech</span>
-            <div class="progress"><div class="progress-bar" style="--level: 75%"></div></div>
+            <div class="progress" role="progressbar" aria-label="Czech proficiency" aria-valuemin="0" aria-valuemax="100" aria-valuenow="75"><div class="progress-bar" style="--level: 75%"></div></div>
             <span class="lang-level">b2 · maturita in czech</span>
           </div>
           <div class="lang-row">
             <span class="lang-name">english</span>
-            <div class="progress"><div class="progress-bar" style="--level: 75%"></div></div>
+            <div class="progress" role="progressbar" aria-label="English proficiency" aria-valuemin="0" aria-valuemax="100" aria-valuenow="75"><div class="progress-bar" style="--level: 75%"></div></div>
             <span class="lang-level">b2 · maturita exam</span>
           </div>
         </div>
@@ -365,7 +366,7 @@
     <!-- Contact -->
     <section id="contact" class="section contact">
       <div class="container">
-        <h3 class="section-title reveal"><span class="sec-num">06</span><span class="sec-name">get in touch</span></h3>
+        <h2 class="section-title reveal"><span class="sec-num">06</span><span class="sec-name">get in touch</span></h2>
         <p class="contact-lead reveal">
           Open to junior frontend / web developer roles, internships and project
           work in Prague or remote. I reply <em class="serif-accent">quickly</em> and to the point.
@@ -379,11 +380,11 @@
             <span class="contact-label">phone</span>
             <span class="contact-value">+420 737 500 587</span>
           </a>
-          <a href="https://t.me/liltrafficRUS" target="_blank" rel="noopener noreferrer" class="contact-card">
+          <a href="https://t.me/liltrafficRUS" target="_blank" rel="noopener noreferrer" class="contact-card" aria-label="Open Artem's Telegram profile in a new tab">
             <span class="contact-label">telegram</span>
             <span class="contact-value">@liltrafficRUS</span>
           </a>
-          <a href="https://github.com/akira777777" target="_blank" rel="noopener noreferrer" class="contact-card">
+          <a href="https://github.com/akira777777" target="_blank" rel="noopener noreferrer" class="contact-card" aria-label="Open Artem's GitHub profile in a new tab">
             <span class="contact-label">github</span>
             <span class="contact-value">github.com/akira777777</span>
           </a>
@@ -399,6 +400,6 @@
     </div>
   </footer>
 
-  <script src="script.js"></script>
+  <script src="script.js?v=20260726-2"></script>
 </body>
 </html>

@@ -9,58 +9,80 @@ const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)
 // ---------- Mobile nav toggle ----------
 const navToggle = document.getElementById("navToggle");
 const navLinks = document.getElementById("navLinks");
+const mobileNavQuery = window.matchMedia("(max-width: 760px)");
 
-navToggle.addEventListener("click", () => {
-  const open = navLinks.classList.toggle("open");
+function setNavigationState(open) {
+  navLinks.classList.toggle("open", open);
+  navLinks.inert = mobileNavQuery.matches && !open;
   navToggle.classList.toggle("open", open);
   navToggle.setAttribute("aria-expanded", String(open));
-});
+  navToggle.setAttribute("aria-label", open ? "Close navigation" : "Open navigation");
+}
+
+setNavigationState(false);
+
+navToggle.addEventListener("click", () => setNavigationState(!navLinks.classList.contains("open")));
 
 // Close mobile menu after clicking a link
 navLinks.querySelectorAll("a").forEach((link) => {
   link.addEventListener("click", () => {
-    navLinks.classList.remove("open");
-    navToggle.classList.remove("open");
-    navToggle.setAttribute("aria-expanded", "false");
+    setNavigationState(false);
   });
 });
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape" && navLinks.classList.contains("open")) {
+    setNavigationState(false);
+    navToggle.focus();
+  }
+});
+
+mobileNavQuery.addEventListener("change", () => setNavigationState(false));
 
 // ---------- Hero masked-line reveal (plays once on load) ----------
 requestAnimationFrame(() => {
   document.querySelector(".hero").classList.add("lines-in");
 });
 
-// ---------- Nav hide on scroll down / reveal on scroll up ----------
+// ---------- Scroll choreography ----------
+// One rAF scheduler keeps nav, parallax and progress work in the same frame.
 const nav = document.querySelector(".nav");
+const heroBg = document.querySelector(".hero-bg");
+const scrollProgress = document.querySelector(".scroll-progress");
 let lastY = window.scrollY;
-let ticking = false;
+let scrollFrame = 0;
 
-function onScroll() {
+function updateScrollChoreography() {
   const y = window.scrollY;
-  // keep visible near the top or when the mobile menu is open
-  if (y < 120 || navLinks.classList.contains("open")) {
+  nav.classList.toggle("is-scrolled", y > 12);
+
+  if (prefersReducedMotion || y < 120 || navLinks.classList.contains("open")) {
     nav.classList.remove("hidden");
   } else if (y > lastY + 6) {
     nav.classList.add("hidden");
   } else if (y < lastY - 6) {
     nav.classList.remove("hidden");
   }
+
+  if (heroBg && !prefersReducedMotion && y < window.innerHeight * 1.2) {
+    heroBg.style.transform = `translate3d(0, ${(y * 0.12).toFixed(1)}px, 0)`;
+  }
+
+  if (scrollProgress) {
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    scrollProgress.style.transform = `scaleX(${max > 0 ? (y / max).toFixed(4) : 0})`;
+  }
+
   lastY = y;
-  ticking = false;
+  scrollFrame = 0;
 }
 
-if (!prefersReducedMotion) {
-  window.addEventListener(
-    "scroll",
-    () => {
-      if (!ticking) {
-        requestAnimationFrame(onScroll);
-        ticking = true;
-      }
-    },
-    { passive: true }
-  );
+function queueScrollChoreography() {
+  if (!scrollFrame) scrollFrame = requestAnimationFrame(updateScrollChoreography);
 }
+
+window.addEventListener("scroll", queueScrollChoreography, { passive: true });
+updateScrollChoreography();
 
 // ---------- Scroll-reveal (single elements) ----------
 const revealObserver = new IntersectionObserver(
@@ -72,7 +94,7 @@ const revealObserver = new IntersectionObserver(
       }
     });
   },
-  { threshold: 0.12 }
+  { threshold: 0.12, rootMargin: "0px 0px -6%" }
 );
 
 document.querySelectorAll(".reveal").forEach((el) => revealObserver.observe(el));
@@ -116,7 +138,10 @@ const sectionObserver = new IntersectionObserver(
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
         navAnchors.forEach((a) => {
-          a.classList.toggle("active", a.getAttribute("href") === `#${entry.target.id}`);
+          const isCurrent = a.getAttribute("href") === `#${entry.target.id}`;
+          a.classList.toggle("active", isCurrent);
+          if (isCurrent) a.setAttribute("aria-current", "location");
+          else a.removeAttribute("aria-current");
         });
       }
     });
@@ -151,72 +176,34 @@ const finePointer = window.matchMedia("(pointer: fine)").matches;
 
 if (finePointer && !prefersReducedMotion) {
   document.querySelectorAll(".project-card").forEach((card) => {
-    card.addEventListener("mousemove", (e) => {
+    let pointerFrame = 0;
+    let pointerX = 0;
+    let pointerY = 0;
+
+    const updateTilt = () => {
       const r = card.getBoundingClientRect();
-      const px = (e.clientX - r.left) / r.width - 0.5;
-      const py = (e.clientY - r.top) / r.height - 0.5;
+      const px = (pointerX - r.left) / r.width - 0.5;
+      const py = (pointerY - r.top) / r.height - 0.5;
       card.style.setProperty("--ry", `${(px * 5).toFixed(2)}deg`);
       card.style.setProperty("--rx", `${(-py * 5).toFixed(2)}deg`);
       // spotlight position for the ::before glow
-      card.style.setProperty("--mx", `${(e.clientX - r.left).toFixed(0)}px`);
-      card.style.setProperty("--my", `${(e.clientY - r.top).toFixed(0)}px`);
+      card.style.setProperty("--mx", `${(pointerX - r.left).toFixed(0)}px`);
+      card.style.setProperty("--my", `${(pointerY - r.top).toFixed(0)}px`);
+      pointerFrame = 0;
+    };
+
+    card.addEventListener("pointermove", (event) => {
+      pointerX = event.clientX;
+      pointerY = event.clientY;
+      if (!pointerFrame) pointerFrame = requestAnimationFrame(updateTilt);
     });
-    card.addEventListener("mouseleave", () => {
+    card.addEventListener("pointerleave", () => {
+      cancelAnimationFrame(pointerFrame);
+      pointerFrame = 0;
       card.style.setProperty("--rx", "0deg");
       card.style.setProperty("--ry", "0deg");
     });
   });
-}
-
-// ---------- Parallax accent ----------
-// The aurora layer floats slower than the hero content while scrolling.
-// Transform-only, driven by one rAF-throttled scroll handler.
-const heroBg = document.querySelector(".hero-bg");
-
-if (heroBg && !prefersReducedMotion) {
-  let parallaxTicking = false;
-
-  const applyParallax = () => {
-    const vh = window.innerHeight;
-    if (window.scrollY < vh * 1.2) {
-      heroBg.style.transform = `translate3d(0, ${(window.scrollY * 0.12).toFixed(1)}px, 0)`;
-    }
-    parallaxTicking = false;
-  };
-
-  window.addEventListener(
-    "scroll",
-    () => {
-      if (!parallaxTicking) {
-        requestAnimationFrame(applyParallax);
-        parallaxTicking = true;
-      }
-    },
-    { passive: true }
-  );
-}
-
-// ---------- Scroll progress bar ----------
-const scrollProgress = document.querySelector(".scroll-progress");
-
-if (scrollProgress) {
-  let progressTicking = false;
-  const updateProgress = () => {
-    const max = document.documentElement.scrollHeight - window.innerHeight;
-    scrollProgress.style.transform = `scaleX(${max > 0 ? (window.scrollY / max).toFixed(4) : 0})`;
-    progressTicking = false;
-  };
-  window.addEventListener(
-    "scroll",
-    () => {
-      if (!progressTicking) {
-        requestAnimationFrame(updateProgress);
-        progressTicking = true;
-      }
-    },
-    { passive: true }
-  );
-  updateProgress();
 }
 
 // ---------- Cursor glow — soft halo trailing the pointer ----------
@@ -237,17 +224,36 @@ if (finePointer && !prefersReducedMotion) {
         glow.classList.add("on");
         glowVisible = true;
       }
+      startTrail();
     },
     { passive: true }
   );
 
   // lerp loop — glow trails the cursor with a soft delay
-  (function trail() {
+  let trailFrame;
+  let trailRunning = false;
+  const trail = () => {
     cx += (gx - cx) * 0.12;
     cy += (gy - cy) * 0.12;
     glow.style.transform = `translate3d(${cx.toFixed(1)}px, ${cy.toFixed(1)}px, 0)`;
-    requestAnimationFrame(trail);
-  })();
+    trailFrame = requestAnimationFrame(trail);
+  };
+
+  const startTrail = () => {
+    if (!trailRunning && !document.hidden) {
+      trailRunning = true;
+      trail();
+    }
+  };
+
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) {
+      cancelAnimationFrame(trailFrame);
+      trailRunning = false;
+    } else if (glowVisible) {
+      startTrail();
+    }
+  });
 }
 
 // ---------- Footer year ----------
