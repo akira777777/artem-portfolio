@@ -701,6 +701,7 @@ a { color: inherit; text-decoration: none; }
 .project-media img {
   display: block;
   width: 100%;
+  height: auto;
   aspect-ratio: 8 / 5;
   object-fit: cover;
   object-position: top;
@@ -1155,6 +1156,7 @@ main:focus { outline: none; }
 .modal-media img {
   display: block;
   width: 100%;
+  height: auto;
   aspect-ratio: 16 / 9;
   object-fit: cover;
   object-position: top;
@@ -1238,6 +1240,9 @@ main:focus { outline: none; }
 
 @media (max-width: 760px) {
   .nav-toggle { display: flex; margin-left: auto; }
+
+  /* featured preview gets a taller crop on narrow screens */
+  .project-card.featured .project-media img { aspect-ratio: 8 / 5; }
 
   .nav-links {
     position: absolute;

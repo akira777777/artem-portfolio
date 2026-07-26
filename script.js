@@ -257,6 +257,8 @@ if (finePointer && !prefersReducedMotion) {
 }
 
 // ---------- Footer year ----------
+const yearEl = document.getElementById("year");
+if (yearEl) yearEl.textContent = new Date().getFullYear();
 
 // ============================================================
 // Project Detail Modal Logic (Feature Expansion)
@@ -268,11 +270,19 @@ const modalTitle = document.getElementById("modalTitle");
 const modalDescription = document.getElementById("modalDescription");
 const modalTechnologies = document.getElementById("modalTechnologies");
 const modalLink = document.getElementById("modalLink");
+const modalImage = document.getElementById("modalImage");
+const modalRole = document.getElementById("modalRole");
+const modalOutcome = document.getElementById("modalOutcome");
+
+/** Element that opened the modal — focus returns here on close. */
+let lastModalTrigger = null;
 
 /**
  * Shows the project detail modal with a smooth transition.
  */
 function showModal(cardElement) {
+    lastModalTrigger = cardElement;
+
     // 1. Extract data from the card DOM so the modal works without data attributes
     const title = cardElement.querySelector(".project-name")?.textContent?.trim() || "Project";
     const description = cardElement.querySelector(".project-desc")?.textContent?.trim() || "No description available.";
@@ -282,6 +292,17 @@ function showModal(cardElement) {
     // 2. Populate modal content
     modalTitle.textContent = title;
     modalDescription.textContent = description;
+    modalRole.textContent = cardElement.dataset.role || "—";
+    modalOutcome.textContent = cardElement.dataset.outcome || "—";
+
+    if (cardElement.dataset.img) {
+        modalImage.src = cardElement.dataset.img;
+        modalImage.alt = `Preview of ${title}`;
+        modalImage.parentElement.style.display = "";
+    } else {
+        modalImage.removeAttribute("src");
+        modalImage.parentElement.style.display = "none";
+    }
 
     // Clear and repopulate technology badges
     modalTechnologies.innerHTML = '';
@@ -302,6 +323,7 @@ function showModal(cardElement) {
     // 3. Transition in (CSS handles the animation via the .open class)
     projectModal.classList.add("open");
     document.body.style.overflow = 'hidden'; // Prevent body scroll when modal is open
+    closeModalButton.focus();
 }
 
 /**
@@ -316,6 +338,12 @@ function hideModal() {
             document.body.style.overflow = '';
         }
     }, 300);
+
+    // Return focus to the card that opened the modal
+    if (lastModalTrigger) {
+        lastModalTrigger.focus();
+        lastModalTrigger = null;
+    }
 }
 
 
@@ -331,10 +359,25 @@ projectModal.addEventListener("click", (e) => {
     }
 });
 
-// Keyboard escape key handler to close modal
+// Keyboard escape key handler to close modal + simple focus trap
 document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape" && projectModal.classList.contains("open")) {
+    if (!projectModal.classList.contains("open")) return;
+    if (event.key === "Escape") {
         hideModal();
+        return;
+    }
+    if (event.key === "Tab") {
+        const focusable = projectModal.querySelectorAll("button, a[href]");
+        if (!focusable.length) return;
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (event.shiftKey && document.activeElement === first) {
+            event.preventDefault();
+            last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+            event.preventDefault();
+            first.focus();
+        }
     }
 });
 
@@ -350,9 +393,21 @@ function initializeProjectCardListeners() {
     if (!projectsGrid) return;
 
     projectsGrid.addEventListener("click", (event) => {
+        // Let real links inside a card (live demo) work normally
+        if (event.target.closest("a")) return;
         // Check if the clicked element or its ancestor is a project card
         const cardElement = event.target.closest(".project-card");
         if (cardElement) {
+            showModal(cardElement);
+        }
+    });
+
+    // Cards are role="button" — activate with Enter / Space
+    projectsGrid.addEventListener("keydown", (event) => {
+        if (event.key !== "Enter" && event.key !== " ") return;
+        const cardElement = event.target.closest(".project-card");
+        if (cardElement && event.target === cardElement) {
+            event.preventDefault();
             showModal(cardElement);
         }
     });
