@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://artem-mikhailov.vercel.app/sitemap.xml

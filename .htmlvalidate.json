@@ -8,6 +8,7 @@
     "no-dup-id": "error",
     "no-inline-style": "off",
     "prefer-native-element": "error",
-    "valid-id": "error"
+    "valid-id": "error",
+    "void-style": "off"
   }
 }

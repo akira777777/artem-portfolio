@@ -258,14 +258,14 @@
         </div>
 
         <!-- Terminal / Developer Console -->
-        <div class="terminal-container reveal" role="region" aria-labelledby="terminalTitle">
+        <section class="terminal-container reveal" aria-labelledby="terminalTitle">
           <div class="terminal-header">
             <div class="terminal-dots">
               <span class="dot-red"></span>
               <span class="dot-yellow"></span>
               <span class="dot-green"></span>
             </div>
-            <span class="terminal-title" id="terminalTitle"><svg class="icon"><use href="#i-terminal"/></svg>artem-cli ~ interactive console</span>
+            <h3 class="terminal-title" id="terminalTitle"><svg class="icon"><use href="#i-terminal"/></svg>artem-cli ~ interactive console</h3>
             <span class="terminal-badge">v1.1</span>
           </div>
           <div class="terminal-quick-cmds" role="group" aria-label="Quick terminal commands">
@@ -287,7 +287,7 @@
             <input type="text" id="terminalInput" class="term-input" placeholder="type a command…" autocomplete="off" autocapitalize="none" enterkeyhint="go" spellcheck="false"/>
             <button type="submit" class="visually-hidden">run command</button>
           </form>
-        </div>
+        </section>
       </div>
     </section>
 
@@ -587,17 +587,17 @@
         <div class="langs stagger">
           <div class="lang-row">
             <span class="lang-name">russian</span>
-            <div class="progress" role="progressbar" aria-label="Russian proficiency" aria-valuemin="0" aria-valuemax="100" aria-valuenow="100"><div class="progress-bar" style="--level: 100%"></div></div>
+            <progress class="progress" aria-label="Russian proficiency" max="100" value="100">100%</progress>
             <span class="lang-level">native</span>
           </div>
           <div class="lang-row">
             <span class="lang-name">czech</span>
-            <div class="progress" role="progressbar" aria-label="Czech proficiency" aria-valuemin="0" aria-valuemax="100" aria-valuenow="75"><div class="progress-bar" style="--level: 75%"></div></div>
+            <progress class="progress" aria-label="Czech proficiency" max="100" value="75">75%</progress>
             <span class="lang-level">b2 · maturita in czech</span>
           </div>
           <div class="lang-row">
             <span class="lang-name">english</span>
-            <div class="progress" role="progressbar" aria-label="English proficiency" aria-valuemin="0" aria-valuemax="100" aria-valuenow="75"><div class="progress-bar" style="--level: 75%"></div></div>
+            <progress class="progress" aria-label="English proficiency" max="100" value="75">75%</progress>
             <span class="lang-level">b2 · maturita exam</span>
           </div>
         </div>
@@ -719,13 +719,13 @@
       <div class="modal-header">
         <div>
           <p id="modalStatus" class="modal-eyebrow"></p>
-          <h2 id="modalTitle" class="modal-title"></h2>
+          <h2 id="modalTitle" class="modal-title">Project details</h2>
         </div>
         <button type="button" id="closeModalButton" class="modal-close" aria-label="Close modal">
           <svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 18L18 6M6 6l12 12"/></svg>
         </button>
       </div>
-      <div id="modalMedia" class="modal-media"><img id="modalImage" alt="" /></div>
+      <div id="modalMedia" class="modal-media" hidden><img id="modalImage" src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" alt="" /></div>
       <p id="modalDescription" class="modal-desc"></p>
       <dl class="modal-meta">
         <div id="modalRoleRow"><dt>role</dt><dd id="modalRole"></dd></div>
@@ -746,7 +746,7 @@
         <div id="modalTechnologies" class="modal-techs"></div>
       </div>
       <div class="modal-actions">
-        <a id="modalLink" target="_blank" rel="noopener noreferrer" class="btn btn-primary">open live demo<span class="btn-arrow">→</span></a>
+        <a id="modalLink" href="/" target="_blank" rel="noopener noreferrer" class="btn btn-primary" hidden>open live demo<span class="btn-arrow">→</span></a>
       </div>
     </article>
   </dialog>

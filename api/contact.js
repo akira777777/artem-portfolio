@@ -160,6 +160,13 @@ export default async function handler(request, response) {
   }
 
   const payload = validation.payload;
+  if (!payload) {
+    response.status(500).json({
+      code: "INTERNAL_ERROR",
+      message: "The message could not be processed."
+    });
+    return;
+  }
   const subject = payload.subject || `Portfolio message from ${payload.name}`;
   const messageText = [
     `Name: ${payload.name}`,

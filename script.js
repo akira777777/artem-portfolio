@@ -745,6 +745,7 @@ document.querySelectorAll(".skill-chip[data-tech]").forEach((element) => {
 const terminalBody = document.getElementById("terminalBody");
 const terminalForm = document.getElementById("terminalForm");
 const terminalInput = document.getElementById("terminalInput");
+/** @type {string[]} */
 const commandHistory = [];
 const maximumTerminalLines = 60;
 let commandHistoryIndex = 0;
