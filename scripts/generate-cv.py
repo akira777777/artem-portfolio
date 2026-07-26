@@ -32,20 +32,46 @@ MINT_DARK = HexColor("#2D6A3A")
 WHITE = HexColor("#F2F3ED")
 
 
+def find_font(*candidates: str) -> Path:
+    for candidate in candidates:
+        path = Path(candidate)
+        if path.exists():
+            return path
+    raise FileNotFoundError(f"Required font is missing. Checked: {candidates}")
+
+
 def register_fonts() -> None:
-    font_dir = Path("C:/Windows/Fonts")
     fonts = {
-        "CVSans": font_dir / "DejaVuSans.ttf",
-        "CVSansBold": font_dir / "DejaVuSans-Bold.ttf",
-        "CVSansOblique": font_dir / "DejaVuSans-Oblique.ttf",
-        "CVSansCondensed": font_dir / "DejaVuSansCondensed.ttf",
-        "CVSansCondensedBold": font_dir / "DejaVuSansCondensed-Bold.ttf",
-        "CVMono": font_dir / "consola.ttf",
-        "CVSerifItalic": font_dir / "DejaVuSerif-Italic.ttf",
+        "CVSans": find_font(
+            "C:/Windows/Fonts/DejaVuSans.ttf",
+            "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",
+        ),
+        "CVSansBold": find_font(
+            "C:/Windows/Fonts/DejaVuSans-Bold.ttf",
+            "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",
+        ),
+        "CVSansOblique": find_font(
+            "C:/Windows/Fonts/DejaVuSans-Oblique.ttf",
+            "/usr/share/fonts/truetype/dejavu/DejaVuSans-Oblique.ttf",
+        ),
+        "CVSansCondensed": find_font(
+            "C:/Windows/Fonts/DejaVuSansCondensed.ttf",
+            "/usr/share/fonts/truetype/dejavu/DejaVuSansCondensed.ttf",
+        ),
+        "CVSansCondensedBold": find_font(
+            "C:/Windows/Fonts/DejaVuSansCondensed-Bold.ttf",
+            "/usr/share/fonts/truetype/dejavu/DejaVuSansCondensed-Bold.ttf",
+        ),
+        "CVMono": find_font(
+            "C:/Windows/Fonts/consola.ttf",
+            "C:/Windows/Fonts/DejaVuSansMono.ttf",
+            "/usr/share/fonts/truetype/dejavu/DejaVuSansMono.ttf",
+        ),
+        "CVSerifItalic": find_font(
+            "C:/Windows/Fonts/DejaVuSerif-Italic.ttf",
+            "/usr/share/fonts/truetype/dejavu/DejaVuSerif-Italic.ttf",
+        ),
     }
-    missing = [str(path) for path in fonts.values() if not path.exists()]
-    if missing:
-        raise FileNotFoundError(f"Required fonts are missing: {missing}")
     for name, path in fonts.items():
         pdfmetrics.registerFont(TTFont(name, str(path)))
 
@@ -267,6 +293,8 @@ def build_pdf(output_path: Path) -> None:
         pagesize=A4,
         pageCompression=1,
         invariant=1,
+        initialFontName="CVSans",
+        initialFontSize=10,
     )
     pdf.setTitle("Artem Mikhailov - Curriculum Vitae")
     pdf.setAuthor("Artem Mikhailov")

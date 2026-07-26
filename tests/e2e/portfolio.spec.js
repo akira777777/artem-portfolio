@@ -93,6 +93,14 @@ test("CV dialog opens, exposes working actions and restores focus", async ({ pag
     "href",
     /mailto:artemmikhailov20031001@gmail.com/
   );
+  const downloadLink = dialog.getByRole("link", { name: "Download CV PDF" });
+  await expect(downloadLink).toHaveAttribute("href", "/artem-mikhailov-cv.pdf");
+  await expect(downloadLink).toHaveAttribute("download", "Artem-Mikhailov-CV.pdf");
+
+  const cvResponse = await page.request.get("/artem-mikhailov-cv.pdf");
+  expect(cvResponse.status()).toBe(200);
+  expect(cvResponse.headers()["content-type"]).toContain("application/pdf");
+  expect((await cvResponse.body()).subarray(0, 5).toString()).toBe("%PDF-");
 
   await page.getByRole("button", { name: "Close CV modal" }).click();
   await expect(dialog).toBeHidden();

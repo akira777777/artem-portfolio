@@ -1386,7 +1386,7 @@ main:focus { outline: none; }
 .modal-actions { display: flex; justify-content: flex-end; }
 
 /* ============================================================
-   Print — portfolio doubles as a one-page resume
+   Print fallback for the portfolio page
    ============================================================ */
 @media print {
   @page { size: A4; margin: 14mm; }
@@ -1395,7 +1395,7 @@ main:focus { outline: none; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
   .nav, .hero-bg, .hero-scrollhint, .scroll-progress, .cursor-glow,
   .hero-foot .btn, .footer .to-top, .skip-link, .project-media, .footer-links { display: none !important; }
-  body:not(.printing-cv) .modal-overlay { display: none !important; }
+  .modal-overlay { display: none !important; }
   .hero { min-height: 0; border-bottom: 2px solid #111; }
   .hero-inner { padding: 24px 0; }
   .hero-name { font-size: 42pt; }
@@ -1410,41 +1410,6 @@ main:focus { outline: none; }
   .contact-card:hover .contact-value { color: #111; }
   a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 0.75em; color: #666; font-family: var(--mono); }
   .link-arrow .arr, .project-foot .link-arrow::after { display: none; }
-  body.printing-cv > :not(#cvModal) { display: none !important; }
-  body.printing-cv #cvModal[open] {
-    position: static;
-    display: block;
-    width: auto;
-    height: auto;
-    padding: 0;
-    overflow: visible;
-    background: #fff;
-  }
-  body.printing-cv #cvModal::backdrop { display: none; }
-  body.printing-cv #cvModal .modal-content {
-    max-width: none;
-    max-height: none;
-    overflow: visible;
-    padding: 0;
-    border: 0;
-    border-radius: 0;
-    box-shadow: none;
-    background: #fff;
-    color: #111;
-  }
-  body.printing-cv #cvModal .modal-header {
-    padding-bottom: 12pt;
-    border-bottom: 2px solid #111;
-  }
-  body.printing-cv #cvModal .modal-close,
-  body.printing-cv #cvModal .cv-modal-actions { display: none !important; }
-  body.printing-cv #cvModal .modal-title { font-size: 23pt; }
-  body.printing-cv #cvModal .modal-subtitle,
-  body.printing-cv #cvModal .cv-section h3 { color: #111; }
-  body.printing-cv #cvModal .cv-preview-body { gap: 12pt; margin: 14pt 0 0; }
-  body.printing-cv #cvModal .cv-section { break-inside: avoid; }
-  body.printing-cv #cvModal .cv-section p,
-  body.printing-cv #cvModal .cv-section li { color: #222; font-size: 9.5pt; }
 }
 
 /* ============================================================

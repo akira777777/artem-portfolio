@@ -7,6 +7,7 @@
   "scripts": {
     "dev": "vite --host 0.0.0.0",
     "preview": "vite preview --host 0.0.0.0",
+    "generate:cv": "python scripts/generate-cv.py",
     "lint": "eslint . --max-warnings=0",
     "typecheck": "tsc --noEmit",
     "validate:html": "html-validate index.html",

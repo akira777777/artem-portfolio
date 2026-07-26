@@ -855,11 +855,10 @@ if (
   });
 }
 
-// CV dialog and print mode
+// CV dialog
 const closeCvModalButton = document.getElementById("closeCvModalButton");
 const heroCvButton = document.getElementById("heroCvBtn");
 const navCvButton = document.getElementById("navCvBtn");
-const printCvButton = document.getElementById("printCvBtn");
 
 /** @param {HTMLElement | null} trigger */
 function openCvModal(trigger) {
@@ -874,15 +873,6 @@ if (closeCvModalButton instanceof HTMLButtonElement && cvModal instanceof HTMLDi
   closeCvModalButton.dataset.autofocus = "true";
   closeCvModalButton.addEventListener("click", () => closeDialog(cvModal));
 }
-if (printCvButton instanceof HTMLButtonElement) {
-  printCvButton.addEventListener("click", () => {
-    document.body.classList.add("printing-cv");
-    window.print();
-  });
-}
-window.addEventListener("afterprint", () => {
-  document.body.classList.remove("printing-cv");
-});
 
 // Contact form validation and real delivery endpoint
 const contactForm = document.getElementById("contactForm");
