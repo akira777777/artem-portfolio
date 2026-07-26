@@ -45,7 +45,7 @@
   <div class="scroll-progress" aria-hidden="true"></div>
 
   <!-- Inline SVG icon sprite (stroke glyphs, inherit currentColor) -->
-  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <svg width="0" height="0" class="svg-sprite" aria-hidden="true" focusable="false">
     <symbol id="i-next" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 15.5v-7l5 7v-7"/></symbol>
     <symbol id="i-react" viewBox="0 0 24 24"><ellipse cx="12" cy="12" rx="10" ry="4"/><ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(120 12 12)"/><circle cx="12" cy="12" r="1.4" fill="currentColor" stroke="none"/></symbol>
     <symbol id="i-ts" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2.5"/><path d="M7 9.5h4.5M9.25 9.5V16"/><path d="M18 10.6c0-1.2-1.1-2.1-2.5-2.1-1.5 0-2.6.8-2.6 2 0 2.8 5.1 1.5 5.1 4.2 0 1.3-1.1 2.2-2.7 2.2-1.5 0-2.6-.8-2.7-2"/></symbol>
@@ -82,13 +82,13 @@
         <a href="#contact" class="nav-cta">contact</a>
       </nav>
       <div class="nav-controls">
-        <button class="nav-icon-btn" id="soundToggle" aria-label="Toggle audio feedback" title="Toggle Sound FX (Web Audio)">
+        <button type="button" class="nav-icon-btn" id="soundToggle" aria-label="Toggle audio feedback" title="Toggle Sound FX (Web Audio)">
           <svg class="icon"><use href="#i-volume-x"/></svg>
         </button>
-        <button class="nav-icon-btn" id="themeToggle" aria-label="Switch accent theme" title="Switch Theme Color">
+        <button type="button" class="nav-icon-btn" id="themeToggle" aria-label="Switch accent theme" title="Switch Theme Color">
           <svg class="icon"><use href="#i-palette"/></svg>
         </button>
-        <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navLinks">
+        <button type="button" class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navLinks">
           <span></span><span></span>
         </button>
       </div>
@@ -258,6 +258,7 @@
           <form class="terminal-input-row" id="terminalForm">
             <span class="term-prompt">artem@portfolio ~ %</span>
             <input type="text" id="terminalInput" class="term-input" placeholder="type command (e.g. help, skills, projects)..." autocomplete="off" spellcheck="false"/>
+            <button type="submit" class="visually-hidden">run command</button>
           </form>
         </div>
       </div>
@@ -612,9 +613,9 @@
             </div>
             <div class="contact-card">
               <span class="contact-label">phone</span>
-              <span class="contact-value">+420 737 500 587</span>
+              <span class="contact-value">+420&nbsp;737&nbsp;500&nbsp;587</span>
               <div class="contact-actions">
-                <a href="tel:+420737500587" class="card-action-link">call now →</a>
+                <a href="tel:+420737500587" class="card-action-link">call&nbsp;now&nbsp;→</a>
                 <button type="button" class="copy-action-btn" data-copy="+420737500587" title="Copy phone number">
                   <svg class="icon"><use href="#i-copy"/></svg> copy
                 </button>
@@ -653,11 +654,11 @@
     <div class="modal-content">
       <div class="modal-header">
         <h2 id="modalTitle" class="modal-title">Project Title</h2>
-        <button id="closeModalButton" class="modal-close" aria-label="Close modal">
+        <button type="button" id="closeModalButton" class="modal-close" aria-label="Close modal">
           <svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 18L18 6M6 6l12 12"/></svg>
         </button>
       </div>
-      <div class="modal-media"><img id="modalImage" src="" alt="" /></div>
+      <div class="modal-media"><img id="modalImage" src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" alt="" /></div>
       <p id="modalDescription" class="modal-desc">No description available.</p>
       <dl class="modal-meta">
         <div><dt>role</dt><dd id="modalRole">—</dd></div>
@@ -678,11 +679,11 @@
           <h2 id="cvModalTitle" class="modal-title">Curriculum Vitae</h2>
           <p class="modal-subtitle">Artem Mikhailov — Junior Frontend / Web Developer</p>
         </div>
-        <button id="closeCvModalButton" class="modal-close" aria-label="Close CV modal">
+        <button type="button" id="closeCvModalButton" class="modal-close" aria-label="Close CV modal">
           <svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 18L18 6M6 6l12 12"/></svg>
         </button>
       </div>
-      
+
       <div class="cv-preview-body">
         <div class="cv-section">
           <h3>Summary</h3>
