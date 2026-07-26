@@ -257,4 +257,108 @@ if (finePointer && !prefersReducedMotion) {
 }
 
 // ---------- Footer year ----------
-document.getElementById("year").textContent = new Date().getFullYear();
+
+// ============================================================
+// Project Detail Modal Logic (Feature Expansion)
+// ============================================================
+
+const projectModal = document.getElementById("projectModal");
+const closeModalButton = document.getElementById("closeModalButton");
+const modalTitle = document.getElementById("modalTitle");
+const modalDescription = document.getElementById("modalDescription");
+const modalTechnologies = document.getElementById("modalTechnologies");
+const modalLink = document.getElementById("modalLink");
+
+/**
+ * Shows the project detail modal with a smooth transition.
+ */
+function showModal(cardElement) {
+    // 1. Extract Data (assuming data attributes are attached to project-card elements)
+    const title = cardElement.dataset.title || "Project Title";
+    const description = cardElement.dataset.description || "No description available.";
+    const linkUrl = cardElement.dataset.link;
+    const technologies = cardElement.dataset.technologies ? cardElement.dataset.technologies.split(',').map(t => t.trim()) : [];
+
+    // 2. Populate Modal Content
+    modalTitle.textContent = title;
+    modalDescription.textContent = description;
+
+    // Clear and repopulate technologies badges
+    modalTechnologies.innerHTML = '';
+    technologies.forEach(tech => {
+        const badge = document.createElement('span');
+        badge.className = 'px-3 py-1 text-sm font-medium bg-blue-100 text-blue-800 rounded-full dark:bg-blue-900 dark:text-blue-200';
+        badge.textContent = tech;
+        modalTechnologies.appendChild(badge);
+    });
+
+    // Set link
+    if (linkUrl) {
+        modalLink.href = linkUrl;
+        modalLink.style.display = 'inline-flex'; // Show the button if a link exists
+    } else {
+        modalLink.style.display = 'none'; // Hide the button otherwise
+    }
+
+    // 3. Transition In (CSS classes handle the visual transition)
+    projectModal.classList.remove("opacity-0", "pointer-events-none");
+    projectModal.classList.add("opacity-100");
+    document.body.style.overflow = 'hidden'; // Prevent body scroll when modal is open
+}
+
+/**
+ * Hides the project detail modal with a smooth transition.
+ */
+function hideModal() {
+    // 1. Transition Out
+    projectModal.classList.remove("opacity-100");
+    projectModal.classList.add("opacity-0", "pointer-events-none");
+
+    // 2. Cleanup and Reset after transition ends (300ms defined in CSS)
+    setTimeout(() => {
+        document.body.style.overflow = ''; // Restore body scroll
+    }, 300);
+}
+
+
+// --- Event Listeners for Modal ---
+
+// Close button listener
+closeModalButton.addEventListener("click", hideModal);
+
+// Click outside modal background to close
+projectModal.addEventListener("click", (e) => {
+    if (e.target === projectModal) {
+        hideModal();
+    }
+});
+
+// Keyboard escape key handler to close modal
+document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && !projectModal.classList.contains("opacity-0")) {
+        hideModal();
+    }
+});
+
+
+// --- Event Delegation for Project Cards ---
+
+/**
+ * Attaches a single click listener to the container, delegating the event
+ * to handle clicks on project cards efficiently.
+ */
+function initializeProjectCardListeners() {
+    const projectsGrid = document.querySelector(".projects-grid");
+    if (!projectsGrid) return;
+
+    projectsGrid.addEventListener("click", (event) => {
+        // Check if the clicked element or its ancestor is a project card
+        const cardElement = event.target.closest(".project-card");
+        if (cardElement) {
+            showModal(cardElement);
+        }
+    });
+}
+
+// Initialize listeners once all DOM elements are ready
+document.addEventListener("DOMContentLoaded", initializeProjectCardListeners);
