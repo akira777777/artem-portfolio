@@ -997,12 +997,103 @@ main:focus { outline: none; }
 }
 
 /* ============================================================
+   Project modal
+   ============================================================ */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(16, 17, 16, 0.78);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.modal-overlay.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+.modal-content {
+  width: 100%;
+  max-width: 520px;
+  max-height: calc(100svh - 48px);
+  overflow: auto;
+  background: var(--bg-raised);
+  border: 1px solid var(--line-strong);
+  border-radius: 12px;
+  padding: 28px;
+  box-shadow: var(--glow);
+  transform: scale(0.96);
+  transition: transform 0.3s var(--ease-out);
+}
+.modal-overlay.open .modal-content {
+  transform: scale(1);
+}
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 14px;
+}
+.modal-title {
+  font-size: clamp(1.4rem, 3vw, 1.9rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+.modal-close {
+  flex: none;
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  background: transparent;
+  border: 1px solid var(--line-strong);
+  border-radius: 50%;
+  color: var(--text-dim);
+  cursor: pointer;
+  transition: color 0.25s, border-color 0.25s, background 0.25s;
+}
+.modal-close:hover,
+.modal-close:focus-visible {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: rgba(197, 255, 195, 0.06);
+}
+.modal-close .icon { width: 18px; height: 18px; }
+.modal-desc {
+  color: var(--text-dim);
+  font-weight: 300;
+  margin-bottom: 20px;
+  line-height: 1.65;
+}
+.modal-techs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 28px;
+}
+.modal-techs > span {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  padding: 5px 13px;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+}
+.modal-actions { display: flex; justify-content: flex-end; }
+
+/* ============================================================
    Print — portfolio doubles as a one-page resume
    ============================================================ */
 @media print {
   :root { --bg: #fff; --bg-raised: #fff; --text: #111; --text-dim: #333; --text-faint: #666; --line: #ccc; --line-strong: #999; }
   body { background: #fff; color: #111; font-size: 11pt; }
-  .nav, .hero-bg, .hero-scrollhint, .scroll-progress, .cursor-glow,
+  .nav, .hero-bg, .hero-scrollhint, .scroll-progress, .cursor-glow, .modal-overlay,
   .hero-foot .btn, .footer .to-top, .skip-link { display: none !important; }
   .hero { min-height: 0; border-bottom: 2px solid #111; }
   .hero-inner { padding: 24px 0; }

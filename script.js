@@ -273,21 +273,20 @@ const modalLink = document.getElementById("modalLink");
  * Shows the project detail modal with a smooth transition.
  */
 function showModal(cardElement) {
-    // 1. Extract Data (assuming data attributes are attached to project-card elements)
-    const title = cardElement.dataset.title || "Project Title";
-    const description = cardElement.dataset.description || "No description available.";
-    const linkUrl = cardElement.dataset.link;
-    const technologies = cardElement.dataset.technologies ? cardElement.dataset.technologies.split(',').map(t => t.trim()) : [];
+    // 1. Extract data from the card DOM so the modal works without data attributes
+    const title = cardElement.querySelector(".project-name")?.textContent?.trim() || "Project";
+    const description = cardElement.querySelector(".project-desc")?.textContent?.trim() || "No description available.";
+    const linkUrl = cardElement.querySelector(".project-foot .link-arrow")?.href;
+    const technologies = Array.from(cardElement.querySelectorAll(".tag-list li")).map(li => li.textContent.trim());
 
-    // 2. Populate Modal Content
+    // 2. Populate modal content
     modalTitle.textContent = title;
     modalDescription.textContent = description;
 
-    // Clear and repopulate technologies badges
+    // Clear and repopulate technology badges
     modalTechnologies.innerHTML = '';
     technologies.forEach(tech => {
         const badge = document.createElement('span');
-        badge.className = 'px-3 py-1 text-sm font-medium bg-blue-100 text-blue-800 rounded-full dark:bg-blue-900 dark:text-blue-200';
         badge.textContent = tech;
         modalTechnologies.appendChild(badge);
     });
@@ -295,14 +294,13 @@ function showModal(cardElement) {
     // Set link
     if (linkUrl) {
         modalLink.href = linkUrl;
-        modalLink.style.display = 'inline-flex'; // Show the button if a link exists
+        modalLink.style.display = 'inline-flex';
     } else {
-        modalLink.style.display = 'none'; // Hide the button otherwise
+        modalLink.style.display = 'none';
     }
 
-    // 3. Transition In (CSS classes handle the visual transition)
-    projectModal.classList.remove("opacity-0", "pointer-events-none");
-    projectModal.classList.add("opacity-100");
+    // 3. Transition in (CSS handles the animation via the .open class)
+    projectModal.classList.add("open");
     document.body.style.overflow = 'hidden'; // Prevent body scroll when modal is open
 }
 
@@ -310,23 +308,23 @@ function showModal(cardElement) {
  * Hides the project detail modal with a smooth transition.
  */
 function hideModal() {
-    // 1. Transition Out
-    projectModal.classList.remove("opacity-100");
-    projectModal.classList.add("opacity-0", "pointer-events-none");
+    projectModal.classList.remove("open");
 
-    // 2. Cleanup and Reset after transition ends (300ms defined in CSS)
+    // Restore body scroll after the CSS transition finishes (300ms)
     setTimeout(() => {
-        document.body.style.overflow = ''; // Restore body scroll
+        if (!projectModal.classList.contains("open")) {
+            document.body.style.overflow = '';
+        }
     }, 300);
 }
 
 
-// --- Event Listeners for Modal ---
+// --- Event listeners for modal ---
 
 // Close button listener
 closeModalButton.addEventListener("click", hideModal);
 
-// Click outside modal background to close
+// Click outside modal content to close
 projectModal.addEventListener("click", (e) => {
     if (e.target === projectModal) {
         hideModal();
@@ -335,7 +333,7 @@ projectModal.addEventListener("click", (e) => {
 
 // Keyboard escape key handler to close modal
 document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape" && !projectModal.classList.contains("opacity-0")) {
+    if (event.key === "Escape" && projectModal.classList.contains("open")) {
         hideModal();
     }
 });
