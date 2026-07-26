@@ -4,6 +4,10 @@ node_modules/
 dist/
 playwright-report/
 test-results/
+.coverage
+.pytest_cache/
+.playwright-mcp/
+debug-*.jpeg
 .env
 .env.local
 .env.*.local

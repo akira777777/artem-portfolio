@@ -17,9 +17,16 @@ test("home page loads with meaningful content and no critical console errors", a
 
 test("navigation reaches sections and browser Back restores the previous anchor", async ({ page }) => {
   await page.goto("/");
-  await page.getByRole("link", { name: /^about/ }).click();
+  const followPrimaryLink = async (name) => {
+    if ((page.viewportSize()?.width ?? 0) <= 860) {
+      await page.getByRole("button", { name: /navigation/ }).click();
+    }
+    await page.getByRole("link", { name }).click();
+  };
+
+  await followPrimaryLink(/^about/);
   await expect(page).toHaveURL(/#about$/);
-  await page.getByRole("link", { name: /^projects/ }).click();
+  await followPrimaryLink(/^projects/);
   await expect(page).toHaveURL(/#projects$/);
   await page.goBack();
   await expect(page).toHaveURL(/#about$/);
