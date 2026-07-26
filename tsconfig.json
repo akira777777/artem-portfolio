@@ -12,6 +12,8 @@
   "include": [
     "script.js",
     "api/**/*.js",
+    "scripts/**/*.mjs",
+    "sites/**/*.js",
     "src/types.d.ts"
   ]
 }

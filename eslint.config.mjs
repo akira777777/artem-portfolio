@@ -21,7 +21,7 @@ export default [
     ]
   },
   {
-    files: ["script.js", "src/**/*.js"],
+    files: ["script.js", "src/**/*.js", "sites/**/*.js"],
     languageOptions: {
       ecmaVersion: "latest",
       sourceType: "module",
@@ -30,7 +30,13 @@ export default [
     rules: sharedRules
   },
   {
-    files: ["api/**/*.js", "tests/**/*.js", "tests/**/*.mjs", "playwright.config.js"],
+    files: [
+      "api/**/*.js",
+      "scripts/**/*.mjs",
+      "tests/**/*.js",
+      "tests/**/*.mjs",
+      "playwright.config.js"
+    ],
     languageOptions: {
       ecmaVersion: "latest",
       sourceType: "module",

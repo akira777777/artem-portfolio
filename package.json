@@ -16,6 +16,7 @@
     "test": "npm run test:unit && npm run test:e2e",
     "prebuild": "npm run typecheck && npm run lint && npm run validate:html && npm run test:unit",
     "build": "vite build",
+    "build:sites": "npm run build && node scripts/prepare-sites-build.mjs",
     "check": "npm run lint && npm run typecheck && npm run validate:html && npm run test"
   },
   "devDependencies": {
