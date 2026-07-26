@@ -415,3 +415,501 @@ function initializeProjectCardListeners() {
 
 // Initialize listeners once all DOM elements are ready
 document.addEventListener("DOMContentLoaded", initializeProjectCardListeners);
+
+// ============================================================
+// Toast Notification System
+// ============================================================
+function showToast(message, type = 'info') {
+  const container = document.getElementById('toastContainer');
+  if (!container) return;
+
+  const toast = document.createElement('div');
+  toast.className = 'toast-message';
+  
+  const iconUse = type === 'success' ? '#i-check' : (type === 'sparkles' ? '#i-sparkles' : '#i-terminal');
+  toast.innerHTML = `
+    <svg class="icon"><use href="${iconUse}"/></svg>
+    <span>${message}</span>
+  `;
+
+  container.appendChild(toast);
+  playUiSound(580, 'sine', 0.05);
+
+  requestAnimationFrame(() => {
+    toast.classList.add('show');
+  });
+
+  setTimeout(() => {
+    toast.classList.remove('show');
+    setTimeout(() => toast.remove(), 400);
+  }, 3500);
+}
+
+// ============================================================
+// Web Audio API Synthesizer (UI Sound FX)
+// ============================================================
+let audioCtx = null;
+let soundEnabled = localStorage.getItem('soundEnabled') === 'true';
+
+function initAudio() {
+  if (!audioCtx) {
+    const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+    if (AudioContextClass) audioCtx = new AudioContextClass();
+  }
+  if (audioCtx && audioCtx.state === 'suspended') {
+    audioCtx.resume();
+  }
+}
+
+function playUiSound(freq = 520, type = 'sine', duration = 0.04) {
+  if (!soundEnabled) return;
+  try {
+    initAudio();
+    if (!audioCtx) return;
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.type = type;
+    osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+    gain.gain.setValueAtTime(0.04, audioCtx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + duration);
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+    osc.start();
+    osc.stop(audioCtx.currentTime + duration);
+  } catch (e) {
+    // Ignore audio errors
+  }
+}
+
+const soundToggle = document.getElementById('soundToggle');
+if (soundToggle) {
+  const updateSoundUI = () => {
+    soundToggle.setAttribute('aria-label', soundEnabled ? 'Mute audio feedback' : 'Enable audio feedback');
+    soundToggle.innerHTML = soundEnabled
+      ? `<svg class="icon"><use href="#i-volume"/></svg>`
+      : `<svg class="icon"><use href="#i-volume-x"/></svg>`;
+  };
+  updateSoundUI();
+
+  soundToggle.addEventListener('click', () => {
+    soundEnabled = !soundEnabled;
+    localStorage.setItem('soundEnabled', String(soundEnabled));
+    updateSoundUI();
+    if (soundEnabled) playUiSound(660, 'sine', 0.08);
+    showToast(soundEnabled ? 'Audio FX enabled 🔊' : 'Audio FX muted 🔇');
+  });
+}
+
+// Global click sound for interactive elements
+document.addEventListener('click', (e) => {
+  if (e.target.closest('button, a, .filter-pill, .term-btn, .project-card')) {
+    playUiSound(440, 'sine', 0.03);
+  }
+});
+
+// ============================================================
+// Theme Palette Switcher
+// ============================================================
+const themes = ['default', 'cyan', 'amber', 'emerald'];
+let currentTheme = localStorage.getItem('userTheme') || 'default';
+
+function applyTheme(themeName) {
+  if (themeName === 'default') {
+    document.body.removeAttribute('data-theme');
+  } else {
+    document.body.setAttribute('data-theme', themeName);
+  }
+  currentTheme = themeName;
+  localStorage.setItem('userTheme', themeName);
+}
+
+applyTheme(currentTheme);
+
+const themeToggle = document.getElementById('themeToggle');
+if (themeToggle) {
+  themeToggle.addEventListener('click', () => {
+    const nextIndex = (themes.indexOf(currentTheme) + 1) % themes.length;
+    const nextTheme = themes[nextIndex];
+    applyTheme(nextTheme);
+    showToast(`Accent theme: ${nextTheme.toUpperCase()}`, 'sparkles');
+  });
+}
+
+// ============================================================
+// Animated Stats Counters
+// ============================================================
+const statNumbers = document.querySelectorAll('.stat-number[data-count]');
+if (statNumbers.length) {
+  const statsObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          const target = parseInt(el.dataset.count, 10);
+          const suffix = el.dataset.count === '5' ? '+' : (el.dataset.count === '100' ? '%' : '');
+          let current = 0;
+          const step = Math.max(1, Math.floor(target / 40));
+          const timer = setInterval(() => {
+            current += step;
+            if (current >= target) {
+              current = target;
+              clearInterval(timer);
+            }
+            el.textContent = `${current}${suffix}`;
+          }, 30);
+          statsObserver.unobserve(el);
+        }
+      });
+    },
+    { threshold: 0.4 }
+  );
+  statNumbers.forEach((el) => statsObserver.observe(el));
+}
+
+// ============================================================
+// Terminal / Developer Console
+// ============================================================
+const terminalBody = document.getElementById('terminalBody');
+const terminalForm = document.getElementById('terminalForm');
+const terminalInput = document.getElementById('terminalInput');
+
+function appendTermLine(text, className = '') {
+  if (!terminalBody) return;
+  const line = document.createElement('div');
+  line.className = `term-line ${className}`;
+  line.innerHTML = text;
+  terminalBody.appendChild(line);
+  terminalBody.scrollTop = terminalBody.scrollHeight;
+}
+
+function handleTermCommand(cmdText) {
+  const cmd = cmdText.trim().toLowerCase();
+  if (!cmd) return;
+
+  appendTermLine(`artem@portfolio ~ % ${cmdText}`, 'cmd-echo');
+
+  switch (cmd) {
+    case 'help':
+      appendTermLine(`Available commands:<br/>
+        • <span class="term-highlight">skills</span> - View technical stack<br/>
+        • <span class="term-highlight">projects</span> - List deployed showcase projects<br/>
+        • <span class="term-highlight">about</span> - Read bio & background<br/>
+        • <span class="term-highlight">cv</span> - Open interactive CV modal<br/>
+        • <span class="term-highlight">contact</span> - Get email, phone & Telegram<br/>
+        • <span class="term-highlight">whoami</span> - Visitor info<br/>
+        • <span class="term-highlight">sudo hire</span> - Direct offer channel<br/>
+        • <span class="term-highlight">clear</span> - Clear terminal window`);
+      break;
+
+    case 'skills':
+      appendTermLine(`<strong>Frontend:</strong> Next.js, React, TypeScript, JavaScript, Tailwind CSS, HTML5, CSS3<br/>
+        <strong>Web Dev:</strong> REST APIs, Node.js, Vercel, Performance &amp; Lighthouse 100<br/>
+        <strong>Foundations:</strong> IT Maturita (2024), SQL, Databases, OS, Networks, Git`);
+      break;
+
+    case 'projects':
+      appendTermLine(`1. <strong>Barbershop Iron &amp; Steel</strong> (Next.js, Tailwind, Lighthouse 100)<br/>
+        2. <strong>Rehabilitation Center Almaty</strong> (Next.js, TypeScript, SEO 98)<br/>
+        3. <strong>SecretTravel Concierge</strong> (Next.js, Multilingual, Crypto 99)<br/>
+        4. <strong>BETZ Sportsbook</strong> (Next.js, Live Odds 95)<br/>
+        5. <strong>Vakalova Dental Clinic</strong> (Next.js, TypeScript, UI/UX 97)`);
+      break;
+
+    case 'about':
+      appendTermLine(`Artem Mikhailov — Junior Frontend &amp; Web Developer in Prague.<br/>
+        Graduated with Czech IT Maturita (2024). Passionate about fast, responsive, and accessible Next.js/TypeScript web apps.`);
+      break;
+
+    case 'cv':
+      showCvModal();
+      appendTermLine(`Opening Curriculum Vitae modal...`);
+      break;
+
+    case 'contact':
+      appendTermLine(`<strong>Email:</strong> artemmikhailov20031001@gmail.com<br/>
+        <strong>Phone:</strong> +420 737 500 587<br/>
+        <strong>Telegram:</strong> @liltrafficRUS<br/>
+        <strong>GitHub:</strong> github.com/akira777777`);
+      break;
+
+    case 'whoami':
+      appendTermLine(`You are a tech recruiter, engineering lead, or client exploring Artem's portfolio. Welcome!`);
+      break;
+
+    case 'sudo hire':
+      appendTermLine(`<span class="term-highlight">ACCESS GRANTED! 🎉</span><br/>
+        Artem has free access to the Czech labor market (no visa sponsorship needed).<br/>
+        Email: artemmikhailov20031001@gmail.com`);
+      showToast('Offer channel activated! 🎉', 'sparkles');
+      break;
+
+    case 'clear':
+      if (terminalBody) terminalBody.innerHTML = '';
+      break;
+
+    default:
+      appendTermLine(`command not found: '${cmdText}'. Type <span class="term-highlight">'help'</span> for available commands.`);
+  }
+}
+
+if (terminalForm && terminalInput) {
+  terminalForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const val = terminalInput.value;
+    terminalInput.value = '';
+    handleTermCommand(val);
+  });
+
+  document.querySelectorAll('.term-btn[data-cmd]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      handleTermCommand(btn.dataset.cmd);
+    });
+  });
+}
+
+// ============================================================
+// Projects Live Search & Category Filtering
+// ============================================================
+const projectSearchInput = document.getElementById('projectSearch');
+const clearSearchBtn = document.getElementById('clearSearchBtn');
+const projectFilterPills = document.querySelectorAll('.projects-filter-pills .filter-pill');
+const projectsCountLabel = document.getElementById('projectsCount');
+const projectsEmptyState = document.getElementById('projectsEmpty');
+const resetProjectsFilterBtn = document.getElementById('resetProjectsFilter');
+const projectCards = document.querySelectorAll('.projects-grid .project-card');
+
+let activeCategoryFilter = 'all';
+
+function filterProjects() {
+  const query = (projectSearchInput?.value || '').trim().toLowerCase();
+  let visibleCount = 0;
+
+  projectCards.forEach((card) => {
+    const tags = (card.dataset.tags || '').toLowerCase();
+    const name = (card.querySelector('.project-name')?.textContent || '').toLowerCase();
+    const desc = (card.querySelector('.project-desc')?.textContent || '').toLowerCase();
+    const cardTechs = Array.from(card.querySelectorAll('.tag-list li')).map(li => li.textContent.toLowerCase()).join(' ');
+
+    const matchesCategory = activeCategoryFilter === 'all' || tags.includes(activeCategoryFilter);
+    const matchesSearch = !query || name.includes(query) || desc.includes(query) || cardTechs.includes(query);
+
+    if (matchesCategory && matchesSearch) {
+      card.style.display = '';
+      visibleCount++;
+    } else {
+      card.style.display = 'none';
+    }
+  });
+
+  if (projectsCountLabel) {
+    projectsCountLabel.textContent = `Showing ${visibleCount} of ${projectCards.length} projects`;
+  }
+
+  if (projectsEmptyState) {
+    projectsEmptyState.classList.toggle('hidden', visibleCount > 0);
+  }
+
+  if (clearSearchBtn) {
+    clearSearchBtn.hidden = !query;
+  }
+}
+
+if (projectSearchInput) {
+  projectSearchInput.addEventListener('input', filterProjects);
+}
+
+if (clearSearchBtn) {
+  clearSearchBtn.addEventListener('click', () => {
+    if (projectSearchInput) {
+      projectSearchInput.value = '';
+      filterProjects();
+      projectSearchInput.focus();
+    }
+  });
+}
+
+projectFilterPills.forEach((pill) => {
+  pill.addEventListener('click', () => {
+    projectFilterPills.forEach(p => p.classList.remove('active'));
+    pill.classList.add('active');
+    activeCategoryFilter = pill.dataset.filter || 'all';
+    filterProjects();
+  });
+});
+
+if (resetProjectsFilterBtn) {
+  resetProjectsFilterBtn.addEventListener('click', () => {
+    activeCategoryFilter = 'all';
+    if (projectSearchInput) projectSearchInput.value = '';
+    projectFilterPills.forEach(p => p.classList.toggle('active', p.dataset.filter === 'all'));
+    filterProjects();
+  });
+}
+
+// ============================================================
+// Interactive Tech Stack Cross-Highlighting
+// ============================================================
+document.querySelectorAll('.skills-grid .tag-list li[data-tech]').forEach((skillTag) => {
+  skillTag.addEventListener('click', () => {
+    const techName = skillTag.dataset.tech.toLowerCase();
+    
+    // Highlight matching cards
+    let matched = 0;
+    projectCards.forEach((card) => {
+      const cardTechs = Array.from(card.querySelectorAll('.tag-list li')).map(li => li.textContent.toLowerCase());
+      const isMatch = cardTechs.some(t => t.includes(techName) || techName.includes(t));
+      if (isMatch) {
+        card.classList.add('highlighted-by-tech');
+        matched++;
+        setTimeout(() => card.classList.remove('highlighted-by-tech'), 2500);
+      }
+    });
+
+    if (matched > 0) {
+      showToast(`Highlighted ${matched} project(s) matching '${skillTag.dataset.tech}'!`, 'sparkles');
+      const projectsSec = document.getElementById('projects');
+      if (projectsSec) projectsSec.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      showToast(`No projects tag matches '${skillTag.dataset.tech}' directly.`);
+    }
+  });
+});
+
+// ============================================================
+// Contact Form & Quick Presets Validation
+// ============================================================
+const contactForm = document.getElementById('contactForm');
+const contactSubjectInput = document.getElementById('contactSubject');
+const presetBtns = document.querySelectorAll('.preset-btn');
+
+presetBtns.forEach((btn) => {
+  btn.addEventListener('click', () => {
+    if (contactSubjectInput) {
+      contactSubjectInput.value = btn.dataset.subject || '';
+      contactSubjectInput.focus();
+    }
+    const messageInput = document.getElementById('contactMessage');
+    if (messageInput) messageInput.focus();
+    showToast(`Subject set to "${btn.dataset.subject}"`);
+  });
+});
+
+if (contactForm) {
+  contactForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const nameInput = document.getElementById('contactName');
+    const emailInput = document.getElementById('contactEmail');
+    const messageInput = document.getElementById('contactMessage');
+
+    const nameErr = document.getElementById('nameError');
+    const emailErr = document.getElementById('emailError');
+    const msgErr = document.getElementById('messageError');
+
+    if (nameErr) nameErr.textContent = '';
+    if (emailErr) emailErr.textContent = '';
+    if (msgErr) msgErr.textContent = '';
+
+    let valid = true;
+
+    if (!nameInput?.value.trim()) {
+      if (nameErr) nameErr.textContent = 'Please enter your name.';
+      valid = false;
+    }
+
+    const emailVal = emailInput?.value.trim() || '';
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailVal) {
+      if (emailErr) emailErr.textContent = 'Please enter your email.';
+      valid = false;
+    } else if (!emailRegex.test(emailVal)) {
+      if (emailErr) emailErr.textContent = 'Please enter a valid email address.';
+      valid = false;
+    }
+
+    if (!messageInput?.value.trim() || messageInput.value.trim().length < 10) {
+      if (msgErr) msgErr.textContent = 'Message must be at least 10 characters.';
+      valid = false;
+    }
+
+    if (!valid) return;
+
+    const submitBtn = document.getElementById('contactSubmitBtn');
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = `<span class="spinner"></span> Sending...`;
+    }
+
+    setTimeout(() => {
+      showToast('Thank you! Your message has been sent to Artem.', 'success');
+      contactForm.reset();
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = `<svg class="icon"><use href="#i-send"/></svg><span>Send Message</span>`;
+      }
+    }, 1000);
+  });
+}
+
+// Copy to clipboard actions
+document.querySelectorAll('.copy-action-btn[data-copy]').forEach((btn) => {
+  btn.addEventListener('click', () => {
+    const text = btn.dataset.copy;
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(text).then(() => {
+        showToast(`Copied "${text}" to clipboard!`, 'success');
+      }).catch(() => {
+        showToast(`Failed to copy to clipboard.`);
+      });
+    }
+  });
+});
+
+// ============================================================
+// CV Modal Handler
+// ============================================================
+const cvModal = document.getElementById('cvModal');
+const closeCvModalButton = document.getElementById('closeCvModalButton');
+const heroCvBtn = document.getElementById('heroCvBtn');
+const navCvBtn = document.getElementById('navCvBtn');
+const printCvBtn = document.getElementById('printCvBtn');
+
+function showCvModal() {
+  if (!cvModal) return;
+  cvModal.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  if (closeCvModalButton) closeCvModalButton.focus();
+}
+
+function hideCvModal() {
+  if (!cvModal) return;
+  cvModal.classList.remove('open');
+  setTimeout(() => {
+    if (!cvModal.classList.contains('open')) {
+      document.body.style.overflow = '';
+    }
+  }, 300);
+}
+
+if (heroCvBtn) heroCvBtn.addEventListener('click', showCvModal);
+if (navCvBtn) navCvBtn.addEventListener('click', showCvModal);
+if (closeCvModalButton) closeCvModalButton.addEventListener('click', hideCvModal);
+
+if (cvModal) {
+  cvModal.addEventListener('click', (e) => {
+    if (e.target === cvModal) hideCvModal();
+  });
+}
+
+if (printCvBtn) {
+  printCvBtn.addEventListener('click', () => {
+    window.print();
+  });
+}
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && cvModal?.classList.contains('open')) {
+    hideCvModal();
+  }
+});
+

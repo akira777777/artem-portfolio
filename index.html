@@ -56,6 +56,17 @@
     <symbol id="i-node" viewBox="0 0 24 24"><path d="M12 2.5l8.2 4.75v9.5L12 21.5l-8.2-4.75v-9.5L12 2.5z"/><circle cx="12" cy="12" r="1.4" fill="currentColor" stroke="none"/></symbol>
     <symbol id="i-db" viewBox="0 0 24 24"><ellipse cx="12" cy="5.5" rx="7.5" ry="3"/><path d="M4.5 5.5v13c0 1.66 3.36 3 7.5 3s7.5-1.34 7.5-3v-13"/><path d="M4.5 12c0 1.66 3.36 3 7.5 3s7.5-1.34 7.5-3"/></symbol>
     <symbol id="i-git" viewBox="0 0 24 24"><circle cx="6.5" cy="6" r="2.5"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="17.5" cy="8" r="2.5"/><path d="M6.5 8.5v7"/><path d="M17.5 10.5c0 4.5-4.5 4-8 5.5"/></symbol>
+    <symbol id="i-terminal" viewBox="0 0 24 24"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></symbol>
+    <symbol id="i-volume" viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></symbol>
+    <symbol id="i-volume-x" viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></symbol>
+    <symbol id="i-palette" viewBox="0 0 24 24"><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"/><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"/><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.92 0 1.5-.75 1.5-1.5 0-.4-.15-.76-.41-1.04-.26-.29-.42-.68-.42-1.12 0-.92.75-1.67 1.67-1.67H16c3.31 0 6-2.69 6-6 0-4.96-4.49-9.67-10-9.67z"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></symbol>
+    <symbol id="i-send" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></symbol>
+    <symbol id="i-sparkles" viewBox="0 0 24 24"><path d="M12 3l1.912 5.813a2 2 0 001.275 1.275L21 12l-5.813 1.912a2 2 0 00-1.275 1.275L12 21l-1.912-5.813a2 2 0 00-1.275-1.275L3 12l5.813-1.912a2 2 0 001.275-1.275L12 3z"/></symbol>
   </svg>
 
   <header class="nav" id="top">
@@ -67,11 +78,20 @@
         <a href="#projects">projects<span class="dot">.</span></a>
         <a href="#education">education<span class="dot">.</span></a>
         <a href="#languages">languages<span class="dot">.</span></a>
+        <button type="button" class="nav-cv-btn" id="navCvBtn"><svg class="icon"><use href="#i-download"/></svg>cv</button>
         <a href="#contact" class="nav-cta">contact</a>
       </nav>
-      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navLinks">
-        <span></span><span></span>
-      </button>
+      <div class="nav-controls">
+        <button class="nav-icon-btn" id="soundToggle" aria-label="Toggle audio feedback" title="Toggle Sound FX (Web Audio)">
+          <svg class="icon"><use href="#i-volume-x"/></svg>
+        </button>
+        <button class="nav-icon-btn" id="themeToggle" aria-label="Switch accent theme" title="Switch Theme Color">
+          <svg class="icon"><use href="#i-palette"/></svg>
+        </button>
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navLinks">
+          <span></span><span></span>
+        </button>
+      </div>
     </div>
   </header>
 
@@ -102,6 +122,7 @@
           </p>
           <div class="hero-foot">
             <a href="#projects" class="btn btn-primary">see my work<span class="btn-arrow">→</span></a>
+            <button type="button" class="btn btn-ghost" id="heroCvBtn"><svg class="icon"><use href="#i-download"/></svg>resume / cv</button>
             <a href="#contact" class="btn btn-ghost">get in touch</a>
             <span class="hero-status"><span class="status-dot" aria-hidden="true"></span>prague, cz · open to junior roles &amp; internships</span>
           </div>
@@ -110,6 +131,28 @@
       <div class="hero-scrollhint" aria-hidden="true">
         <span class="scrollhint-label">scroll</span>
         <span class="scrollhint-line"></span>
+      </div>
+    </section>
+
+    <!-- Stats Counter Bar -->
+    <section class="stats-bar">
+      <div class="container stats-grid stagger">
+        <div class="stat-card">
+          <span class="stat-number" data-count="5">5+</span>
+          <span class="stat-label">deployed web projects</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number" data-count="100">100%</span>
+          <span class="stat-label">lighthouse score benchmarks</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number">2024</span>
+          <span class="stat-label">IT maturita diploma (prague)</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number">3</span>
+          <span class="stat-label">languages (ru · cs b2 · en b2)</span>
+        </div>
       </div>
     </section>
 
@@ -144,40 +187,78 @@
           <div class="skill-block">
             <h3 class="skill-head"><svg class="icon"><use href="#i-react"/></svg><span class="skill-idx">s.01</span>frontend</h3>
             <ul class="tag-list">
-              <li><svg class="icon"><use href="#i-next"/></svg>Next.js</li>
-              <li><svg class="icon"><use href="#i-react"/></svg>React</li>
-              <li><svg class="icon"><use href="#i-ts"/></svg>TypeScript</li>
-              <li><svg class="icon"><use href="#i-js"/></svg>JavaScript</li>
-              <li><svg class="icon"><use href="#i-tailwind"/></svg>Tailwind CSS</li>
-              <li><svg class="icon"><use href="#i-html"/></svg>HTML5</li>
-              <li><svg class="icon"><use href="#i-css"/></svg>CSS3</li>
-              <li>Responsive layouts</li>
+              <li data-tech="Next.js"><svg class="icon"><use href="#i-next"/></svg>Next.js</li>
+              <li data-tech="React"><svg class="icon"><use href="#i-react"/></svg>React</li>
+              <li data-tech="TypeScript"><svg class="icon"><use href="#i-ts"/></svg>TypeScript</li>
+              <li data-tech="JavaScript"><svg class="icon"><use href="#i-js"/></svg>JavaScript</li>
+              <li data-tech="Tailwind CSS"><svg class="icon"><use href="#i-tailwind"/></svg>Tailwind CSS</li>
+              <li data-tech="HTML5"><svg class="icon"><use href="#i-html"/></svg>HTML5</li>
+              <li data-tech="CSS3"><svg class="icon"><use href="#i-css"/></svg>CSS3</li>
+              <li data-tech="Responsive layouts">Responsive layouts</li>
             </ul>
           </div>
           <div class="skill-block">
             <h3 class="skill-head"><svg class="icon"><use href="#i-node"/></svg><span class="skill-idx">s.02</span>web development</h3>
             <ul class="tag-list">
-              <li>REST API integration</li><li>Node.js basics</li>
-              <li>Authentication concepts</li><li>Browser-based apps</li>
-              <li>Deployment on Vercel</li>
+              <li data-tech="REST API integration">REST API integration</li>
+              <li data-tech="Node.js basics">Node.js basics</li>
+              <li data-tech="Authentication concepts">Authentication concepts</li>
+              <li data-tech="Browser-based apps">Browser-based apps</li>
+              <li data-tech="Deployment on Vercel">Deployment on Vercel</li>
             </ul>
           </div>
           <div class="skill-block">
             <h3 class="skill-head"><svg class="icon"><use href="#i-db"/></svg><span class="skill-idx">s.03</span>it foundations</h3>
             <ul class="tag-list">
-              <li>Programming</li><li>SQL &amp; databases</li>
-              <li>Operating systems</li><li>Computer networks</li>
-              <li>HW / SW support</li><li>Information security</li>
+              <li data-tech="Programming">Programming</li>
+              <li data-tech="SQL &amp; databases">SQL &amp; databases</li>
+              <li data-tech="Operating systems">Operating systems</li>
+              <li data-tech="Computer networks">Computer networks</li>
+              <li data-tech="HW / SW support">HW / SW support</li>
+              <li data-tech="Information security">Information security</li>
             </ul>
           </div>
           <div class="skill-block">
             <h3 class="skill-head"><svg class="icon"><use href="#i-git"/></svg><span class="skill-idx">s.04</span>working approach</h3>
             <ul class="tag-list">
-              <li>Git</li><li>SEO basics</li><li>Accessibility</li>
-              <li>UI / UX attention</li><li>Problem solving</li>
-              <li>Clear communication</li>
+              <li data-tech="Git">Git</li>
+              <li data-tech="SEO">SEO basics</li>
+              <li data-tech="Accessibility">Accessibility</li>
+              <li data-tech="UI / UX">UI / UX attention</li>
+              <li data-tech="Problem solving">Problem solving</li>
+              <li data-tech="Clear communication">Clear communication</li>
             </ul>
           </div>
+        </div>
+
+        <!-- Terminal / Developer Console -->
+        <div class="terminal-container reveal">
+          <div class="terminal-header">
+            <div class="terminal-dots">
+              <span class="dot-red"></span>
+              <span class="dot-yellow"></span>
+              <span class="dot-green"></span>
+            </div>
+            <span class="terminal-title"><svg class="icon"><use href="#i-terminal"/></svg>artem-cli ~ zsh (interactive console)</span>
+            <span class="terminal-badge">v1.0.4</span>
+          </div>
+          <div class="terminal-quick-cmds">
+            <span class="quick-label">quick commands:</span>
+            <button type="button" class="term-btn" data-cmd="help">help</button>
+            <button type="button" class="term-btn" data-cmd="skills">skills</button>
+            <button type="button" class="term-btn" data-cmd="projects">projects</button>
+            <button type="button" class="term-btn" data-cmd="whoami">whoami</button>
+            <button type="button" class="term-btn" data-cmd="sudo hire">sudo hire</button>
+            <button type="button" class="term-btn" data-cmd="clear">clear</button>
+          </div>
+          <div class="terminal-body" id="terminalBody">
+            <div class="term-line term-welcome">Artem Mikhailov CLI [Version 1.0.4 - Prague, CZ]</div>
+            <div class="term-line term-welcome">Type <span class="term-highlight">'help'</span> or click the buttons above to inspect credentials, stack &amp; projects.</div>
+          </div>
+          <form class="terminal-input-row" id="terminalForm">
+            <span class="term-prompt">artem@portfolio ~ %</span>
+            <input type="text" id="terminalInput" class="term-input" placeholder="type command (e.g. help, skills, projects)..." autocomplete="off" spellcheck="false"/>
+          </form>
         </div>
       </div>
     </section>
@@ -190,9 +271,35 @@
           Real client and personal projects — different niches, one goal: a
           clear interface, solid structure and trust from the first screen.
         </p>
-        <div class="projects-grid stagger">
+
+        <!-- Project Filter & Search Bar -->
+        <div class="projects-controls reveal">
+          <div class="projects-search-box">
+            <svg class="icon search-icon"><use href="#i-search"/></svg>
+            <input type="text" id="projectSearch" class="projects-search-input" placeholder="Search projects by title, stack (e.g. Next.js, TypeScript), or keywords..." aria-label="Search projects"/>
+            <button type="button" id="clearSearchBtn" class="search-clear-btn" aria-label="Clear search" hidden>×</button>
+          </div>
+          <div class="projects-filter-pills" id="projectFilterPills">
+            <button type="button" class="filter-pill active" data-filter="all">all <span class="pill-count">(5)</span></button>
+            <button type="button" class="filter-pill" data-filter="next">Next.js &amp; React</button>
+            <button type="button" class="filter-pill" data-filter="ts">TypeScript</button>
+            <button type="button" class="filter-pill" data-filter="tailwind">Tailwind CSS</button>
+            <button type="button" class="filter-pill" data-filter="fullapp">Full Applications</button>
+          </div>
+          <div class="projects-status-bar">
+            <span id="projectsCount" class="projects-count-label">Showing 5 of 5 projects</span>
+          </div>
+        </div>
+
+        <div id="projectsEmpty" class="projects-empty hidden">
+          <p>No matching projects found for your search query.</p>
+          <button type="button" id="resetProjectsFilter" class="btn btn-ghost">reset search &amp; filters</button>
+        </div>
+
+        <div class="projects-grid stagger" id="projectsGrid">
 
           <article class="project-card featured" role="button" tabindex="0"
+            data-tags="next react tailwind fullapp"
             data-img="assets/previews/barber.webp"
             data-role="design &amp; build · next.js landing"
             data-outcome="lighthouse 100 · booking-first flow">
@@ -211,7 +318,9 @@
               lead visitors straight to a reservation.
             </p>
             <ul class="tag-list">
-              <li>Next.js</li><li>React</li><li>Tailwind CSS</li>
+              <li data-tech="Next.js">Next.js</li>
+              <li data-tech="React">React</li>
+              <li data-tech="Tailwind CSS">Tailwind CSS</li>
             </ul>
             <div class="project-foot">
               <span class="lighthouse">lighthouse 100</span>
@@ -220,6 +329,7 @@
           </article>
 
           <article class="project-card" role="button" tabindex="0"
+            data-tags="next ts tailwind seo fullapp"
             data-img="assets/previews/reba.webp"
             data-role="multi-page site &amp; seo"
             data-outcome="lighthouse 98 · trust-first structure">
@@ -237,8 +347,11 @@
               application form — with clear navigation and an SEO foundation.
             </p>
             <ul class="tag-list">
-              <li>Next.js</li><li>TypeScript</li><li>SEO</li>
-              <li>Routing</li><li>Tailwind CSS</li>
+              <li data-tech="Next.js">Next.js</li>
+              <li data-tech="TypeScript">TypeScript</li>
+              <li data-tech="SEO">SEO</li>
+              <li data-tech="Routing">Routing</li>
+              <li data-tech="Tailwind CSS">Tailwind CSS</li>
             </ul>
             <div class="project-foot">
               <span class="lighthouse">lighthouse 98</span>
@@ -247,6 +360,7 @@
           </article>
 
           <article class="project-card" role="button" tabindex="0"
+            data-tags="next ts tailwind fullapp"
             data-img="assets/previews/secrettravel.webp"
             data-role="multilingual concierge site"
             data-outcome="lighthouse 99 · ru/en content">
@@ -264,8 +378,11 @@
               tiers, FAQ and crypto payment support.
             </p>
             <ul class="tag-list">
-              <li>Next.js</li><li>TypeScript</li><li>Tailwind CSS</li>
-              <li>Animation</li><li>Crypto</li>
+              <li data-tech="Next.js">Next.js</li>
+              <li data-tech="TypeScript">TypeScript</li>
+              <li data-tech="Tailwind CSS">Tailwind CSS</li>
+              <li data-tech="Animation">Animation</li>
+              <li data-tech="Crypto">Crypto</li>
             </ul>
             <div class="project-foot">
               <span class="lighthouse">lighthouse 99</span>
@@ -274,6 +391,7 @@
           </article>
 
           <article class="project-card" role="button" tabindex="0"
+            data-tags="next react fullapp"
             data-img="assets/previews/betz.webp"
             data-role="sports data interface"
             data-outcome="lighthouse 95 · dense live data">
@@ -291,7 +409,9 @@
               actions.
             </p>
             <ul class="tag-list">
-              <li>Next.js</li><li>React</li><li>Real-time data</li>
+              <li data-tech="Next.js">Next.js</li>
+              <li data-tech="React">React</li>
+              <li data-tech="Real-time data">Real-time data</li>
             </ul>
             <div class="project-foot">
               <span class="lighthouse">lighthouse 95</span>
@@ -300,6 +420,7 @@
           </article>
 
           <article class="project-card" role="button" tabindex="0"
+            data-tags="next ts fullapp"
             data-img="assets/previews/dental.webp"
             data-role="clinic website &amp; booking"
             data-outcome="lighthouse 97 · calm ui/ux">
@@ -317,7 +438,9 @@
               to make the patient's decision easy.
             </p>
             <ul class="tag-list">
-              <li>Next.js</li><li>TypeScript</li><li>UI/UX</li>
+              <li data-tech="Next.js">Next.js</li>
+              <li data-tech="TypeScript">TypeScript</li>
+              <li data-tech="UI/UX">UI/UX</li>
             </ul>
             <div class="project-foot">
               <span class="lighthouse">lighthouse 97</span>
@@ -370,10 +493,40 @@
       </div>
     </section>
 
+    <!-- Engineering Highlights & Quality Standards -->
+    <section id="highlights" class="section">
+      <div class="container">
+        <h2 class="section-title reveal"><span class="sec-num">05</span><span class="sec-name">engineering principles</span></h2>
+        <div class="highlights-grid stagger">
+          <div class="highlight-card">
+            <div class="highlight-head">
+              <span class="highlight-badge">01</span>
+              <h3>Performance &amp; Speed</h3>
+            </div>
+            <p>95–100 Lighthouse scores across all deployments. Clean code splits, image optimization, and zero layout shift.</p>
+          </div>
+          <div class="highlight-card">
+            <div class="highlight-head">
+              <span class="highlight-badge">02</span>
+              <h3>Responsive &amp; Adaptive</h3>
+            </div>
+            <p>Fluid typography, container queries, and mobile-first touch optimization that feels native on any device.</p>
+          </div>
+          <div class="highlight-card">
+            <div class="highlight-head">
+              <span class="highlight-badge">03</span>
+              <h3>SEO &amp; Accessibility</h3>
+            </div>
+            <p>Structured Schema.org markup, semantic HTML5, keyboard accessibility protection, and crisp contrast ratios.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Languages -->
     <section id="languages" class="section">
       <div class="container">
-        <h2 class="section-title reveal"><span class="sec-num">05</span><span class="sec-name">languages &amp; work authorization</span></h2>
+        <h2 class="section-title reveal"><span class="sec-num">06</span><span class="sec-name">languages &amp; work authorization</span></h2>
         <div class="langs stagger">
           <div class="lang-row">
             <span class="lang-name">russian</span>
@@ -401,28 +554,83 @@
     <!-- Contact -->
     <section id="contact" class="section contact">
       <div class="container">
-        <h2 class="section-title reveal"><span class="sec-num">06</span><span class="sec-name">get in touch</span></h2>
+        <h2 class="section-title reveal"><span class="sec-num">07</span><span class="sec-name">get in touch</span></h2>
         <p class="contact-lead reveal">
           Open to junior frontend / web developer roles, internships and project
           work in Prague or remote. I reply <em class="serif-accent">quickly</em> and to the point.
         </p>
-        <div class="contact-links stagger">
-          <a href="mailto:artemmikhailov20031001@gmail.com" class="contact-card">
-            <span class="contact-label">email</span>
-            <span class="contact-value">artemmikhailov20031001@gmail.com</span>
-          </a>
-          <a href="tel:+420737500587" class="contact-card">
-            <span class="contact-label">phone</span>
-            <span class="contact-value">+420 737 500 587</span>
-          </a>
-          <a href="https://t.me/liltrafficRUS" target="_blank" rel="noopener noreferrer" class="contact-card" aria-label="Open Artem's Telegram profile in a new tab">
-            <span class="contact-label">telegram</span>
-            <span class="contact-value">@liltrafficRUS</span>
-          </a>
-          <a href="https://github.com/akira777777" target="_blank" rel="noopener noreferrer" class="contact-card" aria-label="Open Artem's GitHub profile in a new tab">
-            <span class="contact-label">github</span>
-            <span class="contact-value">github.com/akira777777</span>
-          </a>
+
+        <div class="contact-grid reveal">
+          <!-- Interactive Quick Message Form -->
+          <div class="contact-form-wrap">
+            <div class="preset-buttons-row">
+              <span class="preset-label">quick topics:</span>
+              <button type="button" class="preset-btn" data-subject="Junior Developer Role / Internship">💼 Junior Role</button>
+              <button type="button" class="preset-btn" data-subject="Freelance / Landing Page Project">🚀 Web Project</button>
+              <button type="button" class="preset-btn" data-subject="General Inquiry / Coffee Chat">☕ Say Hello</button>
+            </div>
+            <form id="contactForm" class="contact-form" novalidate>
+              <div class="form-row-2">
+                <div class="form-group">
+                  <label for="contactName">Your Name <span class="required">*</span></label>
+                  <input type="text" id="contactName" name="name" placeholder="Alex Novák" required />
+                  <span class="field-error" id="nameError"></span>
+                </div>
+                <div class="form-group">
+                  <label for="contactEmail">Your Email <span class="required">*</span></label>
+                  <input type="email" id="contactEmail" name="email" placeholder="alex@company.com" required />
+                  <span class="field-error" id="emailError"></span>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="contactSubject">Subject</label>
+                <input type="text" id="contactSubject" name="subject" placeholder="Junior Frontend Role at..." />
+              </div>
+              <div class="form-group">
+                <label for="contactMessage">Message <span class="required">*</span></label>
+                <textarea id="contactMessage" name="message" rows="4" placeholder="Hi Artem, we're looking for a frontend developer in Prague..." required></textarea>
+                <span class="field-error" id="messageError"></span>
+              </div>
+              <button type="submit" id="contactSubmitBtn" class="btn btn-primary btn-submit">
+                <svg class="icon"><use href="#i-send"/></svg>
+                <span>Send Message</span>
+              </button>
+            </form>
+          </div>
+
+          <!-- Contact Cards with Copy Action -->
+          <div class="contact-links stagger">
+            <div class="contact-card">
+              <span class="contact-label">email</span>
+              <span class="contact-value">artemmikhailov20031001@gmail.com</span>
+              <div class="contact-actions">
+                <a href="mailto:artemmikhailov20031001@gmail.com" class="card-action-link">send email →</a>
+                <button type="button" class="copy-action-btn" data-copy="artemmikhailov20031001@gmail.com" title="Copy email address">
+                  <svg class="icon"><use href="#i-copy"/></svg> copy
+                </button>
+              </div>
+            </div>
+            <div class="contact-card">
+              <span class="contact-label">phone</span>
+              <span class="contact-value">+420 737 500 587</span>
+              <div class="contact-actions">
+                <a href="tel:+420737500587" class="card-action-link">call now →</a>
+                <button type="button" class="copy-action-btn" data-copy="+420737500587" title="Copy phone number">
+                  <svg class="icon"><use href="#i-copy"/></svg> copy
+                </button>
+              </div>
+            </div>
+            <a href="https://t.me/liltrafficRUS" target="_blank" rel="noopener noreferrer" class="contact-card" aria-label="Open Artem's Telegram profile in a new tab">
+              <span class="contact-label">telegram</span>
+              <span class="contact-value">@liltrafficRUS</span>
+              <span class="card-action-link">open telegram →</span>
+            </a>
+            <a href="https://github.com/akira777777" target="_blank" rel="noopener noreferrer" class="contact-card" aria-label="Open Artem's GitHub profile in a new tab">
+              <span class="contact-label">github</span>
+              <span class="contact-value">github.com/akira777777</span>
+              <span class="card-action-link">view github →</span>
+            </a>
+          </div>
         </div>
       </div>
     </section>
@@ -461,6 +669,65 @@
       </div>
     </div>
   </div>
+
+  <!-- CV Preview Modal -->
+  <div id="cvModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="cvModalTitle">
+    <div class="modal-content cv-modal-content">
+      <div class="modal-header">
+        <div>
+          <h2 id="cvModalTitle" class="modal-title">Curriculum Vitae</h2>
+          <p class="modal-subtitle">Artem Mikhailov — Junior Frontend / Web Developer</p>
+        </div>
+        <button id="closeCvModalButton" class="modal-close" aria-label="Close CV modal">
+          <svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+      
+      <div class="cv-preview-body">
+        <div class="cv-section">
+          <h3>Summary</h3>
+          <p>Junior Frontend and Web Developer based in Prague with Czech IT Maturita diploma (2024). Focused on building fast, responsive, and SEO-optimized web applications with Next.js, React, TypeScript, and modern CSS.</p>
+        </div>
+
+        <div class="cv-section">
+          <h3>Technical Stack</h3>
+          <ul class="cv-list">
+            <li><strong>Frontend:</strong> Next.js, React, TypeScript, JavaScript (ES6+), HTML5, CSS3, Tailwind CSS, Responsive Design</li>
+            <li><strong>Web Development:</strong> REST APIs, Node.js basics, Vercel deployment, Web performance &amp; Lighthouse optimization</li>
+            <li><strong>IT Foundations:</strong> SQL, Databases, Networking, Operating Systems, Software/Hardware support</li>
+            <li><strong>Tools &amp; Workflow:</strong> Git, GitHub, VS Code, Figma inspect, basic SEO &amp; Accessibility (a11y)</li>
+          </ul>
+        </div>
+
+        <div class="cv-section">
+          <h3>Education</h3>
+          <p><strong>2024: IT Maturita Diploma — Information Technology</strong><br/>
+          Vyšší odborná škola informačních studií a Střední škola elektrotechniky, multimédií a informatiky (Prague 9)<br/>
+          <em>Specialization: Software Applications and Programming (Code 18-20-M/01)</em></p>
+        </div>
+
+        <div class="cv-section">
+          <h3>Languages &amp; Work Status</h3>
+          <p>• <strong>Russian:</strong> Native<br/>
+          • <strong>Czech:</strong> B2 Professional (Maturita completed in Czech) — <strong>Free access to the Czech labor market (No visa sponsorship needed)</strong><br/>
+          • <strong>English:</strong> B2 Intermediate (Maturita exam level)</p>
+        </div>
+      </div>
+
+      <div class="cv-modal-actions">
+        <button type="button" id="printCvBtn" class="btn btn-ghost">
+          <svg class="icon"><use href="#i-download"/></svg> Print / Save PDF
+        </button>
+        <a href="mailto:artemmikhailov20031001@gmail.com?subject=Interview%20Request%20-%20Artem%20Mikhailov" class="btn btn-primary">
+          <svg class="icon"><use href="#i-mail"/></svg> Request Interview
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toastContainer" class="toast-container" aria-live="polite" aria-atomic="true"></div>
+
   <script src="script.js?v=20260726-3"></script>
 </body>
 </html>
