@@ -4,40 +4,68 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Artem Mikhailov — Junior Frontend / Web Developer</title>
-  <meta name="description" content="Portfolio of Artem Mikhailov, junior frontend and web developer based in Prague. Next.js, React, TypeScript, JavaScript, HTML and CSS." />
+  <meta name="description" content="Prague-based junior frontend developer building responsive, accessible web interfaces with Next.js, React, TypeScript, JavaScript, HTML and CSS." />
+  <meta name="robots" content="index, follow" />
+  <meta name="color-scheme" content="dark" />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231b1c1b'/%3E%3Ctext x='16' y='22' font-family='monospace' font-size='15' font-weight='600' fill='%23c5ffc3' text-anchor='middle'%3Eam.%3C/text%3E%3C/svg%3E" />
   <meta name="theme-color" content="#1b1c1b" />
-  <link rel="canonical" href="https://artem-mikhailov.vercel.app/" />
+  <link rel="canonical" href="https://artem-portfolio-ten.vercel.app/" />
 
   <!-- Open Graph / social preview -->
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://artem-mikhailov.vercel.app/" />
+  <meta property="og:url" content="https://artem-portfolio-ten.vercel.app/" />
+  <meta property="og:site_name" content="Artem Mikhailov — Portfolio" />
   <meta property="og:title" content="Artem Mikhailov — Junior Frontend / Web Developer" />
-  <meta property="og:description" content="Junior frontend developer in Prague. Next.js, React, TypeScript — fast, responsive, reliable interfaces. Open to junior roles & internships." />
+  <meta property="og:description" content="Prague-based junior frontend developer. Explore five deployed projects, an interactive CLI and a concise CV." />
   <meta property="og:locale" content="en_US" />
-  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Artem Mikhailov — Junior Frontend / Web Developer" />
-  <meta name="twitter:description" content="Junior frontend developer in Prague. Next.js, React, TypeScript. Open to junior roles & internships." />
+  <meta name="twitter:description" content="Five deployed projects, an interactive CLI and a concise CV from a Prague-based junior frontend developer." />
 
   <!-- Structured data: Person -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Artem Mikhailov",
-    "url": "https://artem-mikhailov.vercel.app/",
-    "email": "mailto:artemmikhailov20031001@gmail.com",
-    "jobTitle": "Junior Frontend / Web Developer",
-    "address": { "@type": "PostalAddress", "addressLocality": "Prague", "addressCountry": "CZ" },
-    "knowsLanguage": ["ru", "cs", "en"],
-    "knowsAbout": ["Next.js", "React", "TypeScript", "JavaScript", "HTML", "CSS", "Tailwind CSS"],
-    "sameAs": ["https://github.com/akira777777", "https://t.me/liltrafficRUS"]
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": "https://artem-portfolio-ten.vercel.app/#person",
+        "name": "Artem Mikhailov",
+        "url": "https://artem-portfolio-ten.vercel.app/",
+        "email": "mailto:artemmikhailov20031001@gmail.com",
+        "jobTitle": "Junior Frontend / Web Developer",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Prague",
+          "addressCountry": "CZ"
+        },
+        "knowsLanguage": ["ru", "cs", "en"],
+        "knowsAbout": ["Next.js", "React", "TypeScript", "JavaScript", "HTML", "CSS", "Tailwind CSS"],
+        "sameAs": ["https://github.com/akira777777", "https://t.me/liltrafficRUS"]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://artem-portfolio-ten.vercel.app/#website",
+        "url": "https://artem-portfolio-ten.vercel.app/",
+        "name": "Artem Mikhailov — Portfolio",
+        "inLanguage": "en",
+        "author": { "@id": "https://artem-portfolio-ten.vercel.app/#person" }
+      },
+      {
+        "@type": "ProfilePage",
+        "@id": "https://artem-portfolio-ten.vercel.app/#profile",
+        "url": "https://artem-portfolio-ten.vercel.app/",
+        "name": "Artem Mikhailov — Junior Frontend / Web Developer",
+        "isPartOf": { "@id": "https://artem-portfolio-ten.vercel.app/#website" },
+        "mainEntity": { "@id": "https://artem-portfolio-ten.vercel.app/#person" }
+      }
+    ]
   }
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css?v=20260726-3" />
+  <link rel="stylesheet" href="/style.css" />
   <noscript><style>.line-inner,.reveal,.stagger>*{opacity:1!important;transform:none!important;transition:none!important}</style></noscript>
 </head>
 <body>
@@ -116,9 +144,9 @@
             <span class="role-line">web developer<span class="accent-dot">.</span></span>
           </p>
           <p class="hero-tagline">
-            I turn designs and business ideas into fast, responsive and
-            <em class="serif-accent">reliable</em> interfaces — with Next.js,
-            React and TypeScript, and attention to SEO, accessibility and detail.
+            I build responsive web interfaces from design through deployment
+            with Next.js, React and TypeScript — with <em class="serif-accent">care</em>
+            for structure, accessibility and the final polish.
           </p>
           <div class="hero-foot">
             <a href="#projects" class="btn btn-primary">see my work<span class="btn-arrow">→</span></a>
@@ -135,23 +163,23 @@
     </section>
 
     <!-- Stats Counter Bar -->
-    <section class="stats-bar">
+    <section class="stats-bar" aria-label="Portfolio facts">
       <div class="container stats-grid stagger">
         <div class="stat-card">
           <span class="stat-number" data-count="5">5+</span>
-          <span class="stat-label">deployed web projects</span>
-        </div>
-        <div class="stat-card">
-          <span class="stat-number" data-count="100">100%</span>
-          <span class="stat-label">lighthouse score benchmarks</span>
+          <span class="stat-label">public project demos</span>
         </div>
         <div class="stat-card">
           <span class="stat-number">2024</span>
-          <span class="stat-label">IT maturita diploma (prague)</span>
+          <span class="stat-label">czech IT maturita</span>
         </div>
         <div class="stat-card">
           <span class="stat-number">3</span>
-          <span class="stat-label">languages (ru · cs b2 · en b2)</span>
+          <span class="stat-label">languages: ru · cs · en</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number">CZ</span>
+          <span class="stat-label">based in prague</span>
         </div>
       </div>
     </section>
@@ -162,18 +190,16 @@
         <h2 class="section-title reveal"><span class="sec-num">01</span><span class="sec-name">about me</span></h2>
         <div class="about-grid">
           <p class="reveal">
-            Junior frontend and web developer with Czech secondary education in
-            Information Technology, focused on software applications and
-            programming. I build and deploy web projects using Next.js, React,
-            TypeScript, JavaScript, HTML and CSS, with attention to responsive
-            interfaces and practical API integration.
+            I am a Prague-based junior frontend developer with a Czech IT
+            Maturita completed in 2024. I have built and deployed five public
+            portfolio projects with Next.js, React, TypeScript, JavaScript,
+            HTML and CSS.
           </p>
           <p class="reveal">
-            I care about the details: page structure, form states,
-            responsiveness, basic SEO, accessibility and clean code. I'm
-            seeking a long-term junior role in Prague or a hybrid/remote team
-            where strong fundamentals, curiosity and reliability can grow into
-            commercial engineering experience.
+            I like working end to end: turning a design into a responsive
+            interface, connecting APIs, handling loading and error states, and
+            checking the result across devices. I am looking for a junior role
+            where solid fundamentals and dependable delivery matter.
           </p>
         </div>
       </div>
@@ -187,62 +213,62 @@
           <div class="skill-block">
             <h3 class="skill-head"><svg class="icon"><use href="#i-react"/></svg><span class="skill-idx">s.01</span>frontend</h3>
             <ul class="tag-list">
-              <li data-tech="Next.js"><svg class="icon"><use href="#i-next"/></svg>Next.js</li>
-              <li data-tech="React"><svg class="icon"><use href="#i-react"/></svg>React</li>
-              <li data-tech="TypeScript"><svg class="icon"><use href="#i-ts"/></svg>TypeScript</li>
-              <li data-tech="JavaScript"><svg class="icon"><use href="#i-js"/></svg>JavaScript</li>
-              <li data-tech="Tailwind CSS"><svg class="icon"><use href="#i-tailwind"/></svg>Tailwind CSS</li>
-              <li data-tech="HTML5"><svg class="icon"><use href="#i-html"/></svg>HTML5</li>
-              <li data-tech="CSS3"><svg class="icon"><use href="#i-css"/></svg>CSS3</li>
-              <li data-tech="Responsive layouts">Responsive layouts</li>
+              <li><button type="button" class="skill-chip" data-tech="Next.js"><svg class="icon"><use href="#i-next"/></svg>Next.js</button></li>
+              <li><button type="button" class="skill-chip" data-tech="React"><svg class="icon"><use href="#i-react"/></svg>React</button></li>
+              <li><button type="button" class="skill-chip" data-tech="TypeScript"><svg class="icon"><use href="#i-ts"/></svg>TypeScript</button></li>
+              <li><button type="button" class="skill-chip" data-tech="JavaScript"><svg class="icon"><use href="#i-js"/></svg>JavaScript</button></li>
+              <li><button type="button" class="skill-chip" data-tech="Tailwind CSS"><svg class="icon"><use href="#i-tailwind"/></svg>Tailwind CSS</button></li>
+              <li><button type="button" class="skill-chip" data-tech="HTML5"><svg class="icon"><use href="#i-html"/></svg>HTML5</button></li>
+              <li><button type="button" class="skill-chip" data-tech="CSS3"><svg class="icon"><use href="#i-css"/></svg>CSS3</button></li>
+              <li><button type="button" class="skill-chip" data-tech="Responsive layouts">Responsive layouts</button></li>
             </ul>
           </div>
           <div class="skill-block">
             <h3 class="skill-head"><svg class="icon"><use href="#i-node"/></svg><span class="skill-idx">s.02</span>web development</h3>
             <ul class="tag-list">
-              <li data-tech="REST API integration">REST API integration</li>
-              <li data-tech="Node.js basics">Node.js basics</li>
-              <li data-tech="Authentication concepts">Authentication concepts</li>
-              <li data-tech="Browser-based apps">Browser-based apps</li>
-              <li data-tech="Deployment on Vercel">Deployment on Vercel</li>
+              <li><button type="button" class="skill-chip" data-tech="REST API integration">REST API integration</button></li>
+              <li><button type="button" class="skill-chip" data-tech="Node.js">Node.js basics</button></li>
+              <li><button type="button" class="skill-chip" data-tech="Authentication">Authentication concepts</button></li>
+              <li><button type="button" class="skill-chip" data-tech="Browser apps">Browser-based apps</button></li>
+              <li><button type="button" class="skill-chip" data-tech="Vercel">Deployment on Vercel</button></li>
             </ul>
           </div>
           <div class="skill-block">
             <h3 class="skill-head"><svg class="icon"><use href="#i-db"/></svg><span class="skill-idx">s.03</span>it foundations</h3>
             <ul class="tag-list">
-              <li data-tech="Programming">Programming</li>
-              <li data-tech="SQL &amp; databases">SQL &amp; databases</li>
-              <li data-tech="Operating systems">Operating systems</li>
-              <li data-tech="Computer networks">Computer networks</li>
-              <li data-tech="HW / SW support">HW / SW support</li>
-              <li data-tech="Information security">Information security</li>
+              <li><button type="button" class="skill-chip" data-tech="Programming">Programming</button></li>
+              <li><button type="button" class="skill-chip" data-tech="SQL databases">SQL &amp; databases</button></li>
+              <li><button type="button" class="skill-chip" data-tech="Operating systems">Operating systems</button></li>
+              <li><button type="button" class="skill-chip" data-tech="Networks">Computer networks</button></li>
+              <li><button type="button" class="skill-chip" data-tech="Support">HW / SW support</button></li>
+              <li><button type="button" class="skill-chip" data-tech="Security">Information security</button></li>
             </ul>
           </div>
           <div class="skill-block">
             <h3 class="skill-head"><svg class="icon"><use href="#i-git"/></svg><span class="skill-idx">s.04</span>working approach</h3>
             <ul class="tag-list">
-              <li data-tech="Git">Git</li>
-              <li data-tech="SEO">SEO basics</li>
-              <li data-tech="Accessibility">Accessibility</li>
-              <li data-tech="UI / UX">UI / UX attention</li>
-              <li data-tech="Problem solving">Problem solving</li>
-              <li data-tech="Clear communication">Clear communication</li>
+              <li><button type="button" class="skill-chip" data-tech="Git">Git</button></li>
+              <li><button type="button" class="skill-chip" data-tech="SEO">SEO foundations</button></li>
+              <li><button type="button" class="skill-chip" data-tech="Accessibility">Accessibility</button></li>
+              <li><button type="button" class="skill-chip" data-tech="UI UX">UI / UX attention</button></li>
+              <li><button type="button" class="skill-chip" data-tech="Problem solving">Problem solving</button></li>
+              <li><button type="button" class="skill-chip" data-tech="Communication">Clear communication</button></li>
             </ul>
           </div>
         </div>
 
         <!-- Terminal / Developer Console -->
-        <div class="terminal-container reveal">
+        <div class="terminal-container reveal" role="region" aria-labelledby="terminalTitle">
           <div class="terminal-header">
             <div class="terminal-dots">
               <span class="dot-red"></span>
               <span class="dot-yellow"></span>
               <span class="dot-green"></span>
             </div>
-            <span class="terminal-title"><svg class="icon"><use href="#i-terminal"/></svg>artem-cli ~ zsh (interactive console)</span>
-            <span class="terminal-badge">v1.0.4</span>
+            <span class="terminal-title" id="terminalTitle"><svg class="icon"><use href="#i-terminal"/></svg>artem-cli ~ interactive console</span>
+            <span class="terminal-badge">v1.1</span>
           </div>
-          <div class="terminal-quick-cmds">
+          <div class="terminal-quick-cmds" role="group" aria-label="Quick terminal commands">
             <span class="quick-label">quick commands:</span>
             <button type="button" class="term-btn" data-cmd="help">help</button>
             <button type="button" class="term-btn" data-cmd="skills">skills</button>
@@ -251,13 +277,14 @@
             <button type="button" class="term-btn" data-cmd="sudo hire">sudo hire</button>
             <button type="button" class="term-btn" data-cmd="clear">clear</button>
           </div>
-          <div class="terminal-body" id="terminalBody">
-            <div class="term-line term-welcome">Artem Mikhailov CLI [Version 1.0.4 - Prague, CZ]</div>
+          <div class="terminal-body" id="terminalBody" role="log" aria-live="polite" aria-relevant="additions text" tabindex="0">
+            <div class="term-line term-welcome">Artem Mikhailov CLI [Version 1.1 — Prague, CZ]</div>
             <div class="term-line term-welcome">Type <span class="term-highlight">'help'</span> or click the buttons above to inspect credentials, stack &amp; projects.</div>
           </div>
           <form class="terminal-input-row" id="terminalForm">
-            <span class="term-prompt">artem@portfolio ~ %</span>
-            <input type="text" id="terminalInput" class="term-input" placeholder="type command (e.g. help, skills, projects)..." autocomplete="off" spellcheck="false"/>
+            <span class="term-prompt" aria-hidden="true">artem@portfolio ~ %</span>
+            <label class="visually-hidden" for="terminalInput">Terminal command</label>
+            <input type="text" id="terminalInput" class="term-input" placeholder="type a command…" autocomplete="off" autocapitalize="none" enterkeyhint="go" spellcheck="false"/>
             <button type="submit" class="visually-hidden">run command</button>
           </form>
         </div>

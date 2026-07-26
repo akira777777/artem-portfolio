@@ -1,7 +1,31 @@
 {
+  "name": "artem-mikhailov-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Artem Mikhailov's frontend developer portfolio.",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "preview": "vite preview --host 0.0.0.0",
+    "lint": "eslint . --max-warnings=0",
+    "typecheck": "tsc --noEmit",
+    "validate:html": "html-validate index.html",
+    "test:unit": "node --test tests/unit/*.test.mjs",
+    "test:e2e": "playwright test",
+    "test:a11y": "playwright test tests/e2e/accessibility.spec.js",
+    "test": "npm run test:unit && npm run test:e2e",
+    "prebuild": "npm run typecheck && npm run lint && npm run validate:html && npm run test:unit",
+    "build": "vite build",
+    "check": "npm run lint && npm run typecheck && npm run validate:html && npm run test"
+  },
   "devDependencies": {
-    "autoprefixer": "^10.5.4",
-    "postcss": "^8.5.23",
-    "tailwindcss": "^4.3.3"
+    "@axe-core/playwright": "^4.12.1",
+    "@playwright/test": "^1.62.0",
+    "@types/node": "^26.1.1",
+    "eslint": "^10.8.0",
+    "globals": "^17.7.0",
+    "html-validate": "^11.5.6",
+    "typescript": "^7.0.2",
+    "vite": "^8.1.5"
   }
 }
