@@ -34,7 +34,10 @@ test("project search, combined filters, empty state and reset stay consistent", 
   await expect(page.getByRole("status", { name: "" }).filter({ hasText: "Showing 1 of 5 projects" })).toBeVisible();
 
   await search.fill("");
-  await page.getByRole("button", { name: "TypeScript" }).click();
+  await page
+    .getByRole("group", { name: "Filter projects by technology" })
+    .getByRole("button", { name: "TypeScript" })
+    .click();
   await search.fill("dental");
   await expect(page.locator(".project-card:visible")).toHaveCount(1);
   await expect(page.getByRole("heading", { name: "Vakalova Dental" })).toBeVisible();
@@ -58,7 +61,7 @@ test("project dialog is populated, closes with Escape and restores focus", async
 
   const dialog = page.getByRole("dialog", { name: "Barbershop Iron & Steel" });
   await expect(dialog).toBeVisible();
-  await expect(dialog.getByText("Public demo")).toBeVisible();
+  await expect(dialog.getByText("Public demo", { exact: true })).toBeVisible();
   await expect(dialog.getByRole("heading", { name: "Challenge" })).toBeVisible();
   await expect(dialog.getByRole("link", { name: /Open Barbershop.*live demo/ })).toHaveAttribute(
     "href",
@@ -196,7 +199,7 @@ test("primary content remains readable without JavaScript", async ({ browser }) 
   await page.goto("http://127.0.0.1:4173/");
   await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
   await expect(page.locator(".project-card")).toHaveCount(5);
-  await expect(page.getByText("Barbershop Iron & Steel")).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Barbershop Iron & Steel" })).toBeVisible();
   await expect(page.getByRole("form")).toHaveCount(0);
   await expect(page.locator("#contactForm")).toHaveAttribute("action", "/api/contact");
   await context.close();
