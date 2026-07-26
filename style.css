@@ -488,6 +488,21 @@ a { color: inherit; text-decoration: none; }
   background: var(--line);
   align-self: center;
 }
+/* accent rule draws in under the section name on reveal */
+.section-title .sec-name { position: relative; }
+.section-title .sec-name::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -7px;
+  width: 100%;
+  height: 2px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.8s var(--ease-out) 0.2s;
+}
+.section-title.visible .sec-name::after { transform: scaleX(1); }
 
 .section-sub {
   color: var(--text-dim);
@@ -543,6 +558,11 @@ a { color: inherit; text-decoration: none; }
 .skill-block {
   padding: 26px 0 30px;
   border-top: 1px solid var(--line);
+  transition: border-color 0.3s, transform 0.3s var(--ease-out);
+}
+.skill-block:hover {
+  border-top-color: var(--accent);
+  transform: translateY(-2px);
 }
 
 .skill-head {
@@ -855,7 +875,7 @@ a { color: inherit; text-decoration: none; }
   transform: translateY(-50%);
   height: 3px;
   width: 0;
-  background: var(--accent);
+  background: linear-gradient(90deg, rgba(197, 255, 195, 0.35), var(--accent));
   transition: width 1.2s var(--ease-out);
 }
 .progress-bar::after {
@@ -868,6 +888,7 @@ a { color: inherit; text-decoration: none; }
   height: 7px;
   border-radius: 50%;
   background: var(--accent);
+  box-shadow: 0 0 12px rgba(197, 255, 195, 0.8);
 }
 .progress-bar.animate { width: var(--level); }
 
@@ -953,6 +974,19 @@ a { color: inherit; text-decoration: none; }
   color: var(--text-faint);
   letter-spacing: 0.04em;
 }
+.footer-links {
+  display: flex;
+  gap: 22px;
+}
+.footer-links a {
+  font-family: var(--mono);
+  font-size: 0.76rem;
+  color: var(--text-faint);
+  letter-spacing: 0.05em;
+  transition: color 0.25s;
+}
+.footer-links a:hover,
+.footer-links a:focus-visible { color: var(--accent); }
 
 /* ============================================================
    Cursor glow — soft mint halo trailing the pointer
@@ -1016,6 +1050,7 @@ a { color: inherit; text-decoration: none; }
   .reveal, .stagger > * { opacity: 1 !important; transform: none !important; }
   .project-card, .project-card:hover, .project-card:focus-within,
   .contact-card, .contact-card:hover, .contact-card:focus-visible { transform: none; }
+  .project-media img, .project-card:hover .project-media img { transform: none; filter: none; }
   .nav { transition: none; }
 }
 
@@ -1064,7 +1099,7 @@ main:focus { outline: none; }
 }
 .modal-content {
   width: 100%;
-  max-width: 520px;
+  max-width: 560px;
   max-height: calc(100svh - 48px);
   overflow: auto;
   background: var(--bg-raised);
@@ -1111,6 +1146,39 @@ main:focus { outline: none; }
   background: rgba(197, 255, 195, 0.06);
 }
 .modal-close .icon { width: 18px; height: 18px; }
+
+/* modal preview image + mono meta row */
+.modal-media {
+  margin: 0 -28px 18px;
+  border-bottom: 1px solid var(--line);
+}
+.modal-media img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  object-position: top;
+}
+.modal-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 32px;
+  margin: 0 0 20px;
+}
+.modal-meta dt {
+  font-family: var(--mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  margin-bottom: 3px;
+}
+.modal-meta dd {
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  color: var(--text-dim);
+  letter-spacing: 0.03em;
+}
 .modal-desc {
   color: var(--text-dim);
   font-weight: 300;
@@ -1140,7 +1208,7 @@ main:focus { outline: none; }
   :root { --bg: #fff; --bg-raised: #fff; --text: #111; --text-dim: #333; --text-faint: #666; --line: #ccc; --line-strong: #999; }
   body { background: #fff; color: #111; font-size: 11pt; }
   .nav, .hero-bg, .hero-scrollhint, .scroll-progress, .cursor-glow, .modal-overlay,
-  .hero-foot .btn, .footer .to-top, .skip-link { display: none !important; }
+  .hero-foot .btn, .footer .to-top, .skip-link, .project-media, .footer-links { display: none !important; }
   .hero { min-height: 0; border-bottom: 2px solid #111; }
   .hero-inner { padding: 24px 0; }
   .hero-name { font-size: 42pt; }
