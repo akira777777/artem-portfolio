@@ -1,0 +1,328 @@
+- generic [ref=e3]:
+  - navigation [ref=e4]:
+    - generic [ref=e6]:
+      - link "+420 000 000 000" [ref=e7] [cursor=pointer]:
+        - /url: tel:+420000000000
+      - generic [ref=e11]:
+        - link "WhatsApp" [ref=e12] [cursor=pointer]:
+          - /url: "#"
+        - link "Telegram" [ref=e15] [cursor=pointer]:
+          - /url: "#"
+    - generic [ref=e20]:
+      - generic [ref=e22] [cursor=pointer]:
+        - text: IRON
+        - generic [ref=e23]: "&"
+        - text: STEEL
+      - generic [ref=e25]:
+        - button "Services" [ref=e26] [cursor=pointer]
+        - button "Barbers" [ref=e27] [cursor=pointer]
+        - button "Gallery" [ref=e28] [cursor=pointer]
+        - button "Shop" [ref=e29] [cursor=pointer]
+        - button "Contacts" [ref=e30] [cursor=pointer]
+        - button [ref=e31] [cursor=pointer]
+        - button "Book Now" [ref=e36] [cursor=pointer]
+  - generic [ref=e37]:
+    - img "Barber Shop Interior" [ref=e39]
+    - generic [ref=e41]:
+      - heading "Established in Prague" [level=2] [ref=e42]
+      - heading "CRAFTED BY STEEL" [level=1] [ref=e45]
+      - paragraph [ref=e46]: Premium grooming for those who define the standards. Uncompromising quality in the heart of the Czech capital.
+      - generic [ref=e47]:
+        - button "Book Experience" [ref=e48] [cursor=pointer]
+        - button "Menu List" [ref=e50] [cursor=pointer]
+    - button "Scroll" [ref=e51] [cursor=pointer]
+  - generic [ref=e54]:
+    - generic: Service
+    - generic [ref=e55]:
+      - generic [ref=e56]:
+        - generic [ref=e57]:
+          - heading "Fine Selection" [level=2] [ref=e58]
+          - heading "Expert Solutions" [level=3] [ref=e59]
+          - paragraph [ref=e60]: Each session includes a consultation, wash, and styling with premium Iron & Steel products.
+        - generic [ref=e61]:
+          - button "all" [ref=e62] [cursor=pointer]
+          - button "hair" [ref=e63] [cursor=pointer]
+          - button "beard" [ref=e64] [cursor=pointer]
+          - button "combo" [ref=e65] [cursor=pointer]
+      - generic [ref=e66]:
+        - generic [ref=e67] [cursor=pointer]:
+          - generic [ref=e68]:
+            - generic [ref=e69]:
+              - generic [ref=e70]: "01"
+              - heading "Classic Haircut" [level=4] [ref=e71]
+            - paragraph [ref=e72]: Traditional men's haircut using scissors and clippers.
+            - generic [ref=e73]: 60 min
+          - generic [ref=e78]:
+            - generic [ref=e79]: 650 Kč
+            - generic [ref=e80]: Book
+        - generic [ref=e83] [cursor=pointer]:
+          - generic [ref=e84]:
+            - generic [ref=e85]:
+              - generic [ref=e86]: "02"
+              - heading "Beard & Moustache Trim" [level=4] [ref=e87]
+            - paragraph [ref=e88]: Contouring, length correction, and premium oil treatment.
+            - generic [ref=e89]: 40 min
+          - generic [ref=e94]:
+            - generic [ref=e95]: 450 Kč
+            - generic [ref=e96]: Book
+        - generic [ref=e99] [cursor=pointer]:
+          - generic [ref=e100]:
+            - generic [ref=e101]:
+              - generic [ref=e102]: "03"
+              - heading "Grey Camouflage" [level=4] [ref=e103]
+            - paragraph [ref=e104]: Natural toning of grey hair without the "dyed" look.
+            - generic [ref=e105]: 30 min
+          - generic [ref=e110]:
+            - generic [ref=e111]: 550 Kč
+            - generic [ref=e112]: Book
+        - generic [ref=e115] [cursor=pointer]:
+          - generic [ref=e116]:
+            - generic [ref=e117]:
+              - generic [ref=e118]: "04"
+              - heading "Straight Razor Shave" [level=4] [ref=e119]
+            - paragraph [ref=e120]: Royal shave with hot towels and premium grooming products.
+            - generic [ref=e121]: 50 min
+          - generic [ref=e126]:
+            - generic [ref=e127]: 600 Kč
+            - generic [ref=e128]: Book
+        - generic [ref=e131] [cursor=pointer]:
+          - generic [ref=e132]:
+            - generic [ref=e133]:
+              - generic [ref=e134]: "05"
+              - 'heading "Combo: Cut & Beard" [level=4] [ref=e135]'
+            - paragraph [ref=e136]: The ultimate grooming package for a complete sharp look.
+            - generic [ref=e137]: 90 min
+          - generic [ref=e142]:
+            - generic [ref=e143]: 950 Kč
+            - generic [ref=e144]: Book
+        - generic [ref=e147] [cursor=pointer]:
+          - generic [ref=e148]:
+            - generic [ref=e149]:
+              - generic [ref=e150]: "06"
+              - heading "Junior Cut" [level=4] [ref=e151]
+            - paragraph [ref=e152]: Sharp styles for future gentlemen under 12 years old.
+            - generic [ref=e153]: 45 min
+          - generic [ref=e158]:
+            - generic [ref=e159]: 400 Kč
+            - generic [ref=e160]: Book
+      - button "Book Full Treatment" [ref=e164] [cursor=pointer]
+  - generic [ref=e170]:
+    - generic [ref=e171]:
+      - generic [ref=e172]:
+        - heading "Style Archive" [level=2] [ref=e173]
+        - heading "The Portfolio" [level=3] [ref=e174]
+      - paragraph [ref=e175]: Real clients. Real transformations. All crafted at Iron & Steel Prague.
+    - generic [ref=e176]:
+      - generic [ref=e177]:
+        - img "Work 1" [ref=e178]
+        - generic [ref=e179]: View Work 01
+      - generic [ref=e187]:
+        - img "Work 2" [ref=e188]
+        - generic [ref=e189]: View Work 02
+      - generic [ref=e197]:
+        - img "Work 3" [ref=e198]
+        - generic [ref=e199]: View Work 03
+      - generic [ref=e207]:
+        - img "Work 4" [ref=e208]
+        - generic [ref=e209]: View Work 04
+      - generic [ref=e217]:
+        - img "Work 5" [ref=e218]
+        - generic [ref=e219]: View Work 05
+      - generic [ref=e227]:
+        - img "Work 6" [ref=e228]
+        - generic [ref=e229]: View Work 06
+      - generic [ref=e237]:
+        - img "Work 7" [ref=e238]
+        - generic [ref=e239]: View Work 07
+      - generic [ref=e247]:
+        - img "Work 8" [ref=e248]
+        - generic [ref=e249]: View Work 08
+  - generic [ref=e258]:
+    - generic [ref=e259]:
+      - generic [ref=e260]:
+        - heading "Grooming Goods" [level=2] [ref=e261]
+        - heading "The Shop" [level=3] [ref=e262]
+      - generic [ref=e263]:
+        - paragraph [ref=e264]: Professional products used in our Prague chairs. Ships across CZ.
+        - generic [ref=e265]:
+          - button "New Arrivals" [ref=e266] [cursor=pointer]
+          - button "Best Sellers" [ref=e267] [cursor=pointer]
+    - generic [ref=e268]:
+      - generic [ref=e269]:
+        - generic [ref=e270]:
+          - img "Sandalwood Oil" [ref=e271]
+          - generic [ref=e272]: In Stock
+        - generic [ref=e273]:
+          - paragraph [ref=e274]: Iron & Steel
+          - heading "Sandalwood Oil" [level=4] [ref=e275]
+          - generic [ref=e277]:
+            - button [ref=e278] [cursor=pointer]
+            - button [ref=e281] [cursor=pointer]
+            - button [ref=e284] [cursor=pointer]
+            - button [ref=e287] [cursor=pointer]
+            - button [ref=e290] [cursor=pointer]
+          - generic [ref=e293]:
+            - generic [ref=e294]: 350 Kč
+            - button [ref=e295] [cursor=pointer]
+      - generic [ref=e300]:
+        - generic [ref=e301]:
+          - img "Matte Clay" [ref=e302]
+          - generic [ref=e303]: In Stock
+        - generic [ref=e304]:
+          - paragraph [ref=e305]: Reuzel
+          - heading "Matte Clay" [level=4] [ref=e306]
+          - generic [ref=e308]:
+            - button [ref=e309] [cursor=pointer]
+            - button [ref=e312] [cursor=pointer]
+            - button [ref=e315] [cursor=pointer]
+            - button [ref=e318] [cursor=pointer]
+            - button [ref=e321] [cursor=pointer]
+          - generic [ref=e324]:
+            - generic [ref=e325]: 480 Kč
+            - button [ref=e326] [cursor=pointer]
+      - generic [ref=e331]:
+        - generic [ref=e332]:
+          - img "Daily Shampoo" [ref=e333]
+          - generic [ref=e334]: In Stock
+        - generic [ref=e335]:
+          - paragraph [ref=e336]: Uppercut
+          - heading "Daily Shampoo" [level=4] [ref=e337]
+          - generic [ref=e339]:
+            - button [ref=e340] [cursor=pointer]
+            - button [ref=e343] [cursor=pointer]
+            - button [ref=e346] [cursor=pointer]
+            - button [ref=e349] [cursor=pointer]
+            - button [ref=e352] [cursor=pointer]
+          - generic [ref=e355]:
+            - generic [ref=e356]: 420 Kč
+            - button [ref=e357] [cursor=pointer]
+      - generic [ref=e362]:
+        - generic [ref=e363]:
+          - img "Sea Salt Spray" [ref=e364]
+          - generic [ref=e365]: In Stock
+        - generic [ref=e366]:
+          - paragraph [ref=e367]: Morgan's
+          - heading "Sea Salt Spray" [level=4] [ref=e368]
+          - generic [ref=e370]:
+            - button [ref=e371] [cursor=pointer]
+            - button [ref=e374] [cursor=pointer]
+            - button [ref=e377] [cursor=pointer]
+            - button [ref=e380] [cursor=pointer]
+            - button [ref=e383] [cursor=pointer]
+          - generic [ref=e386]:
+            - generic [ref=e387]: 550 Kč
+            - button [ref=e388] [cursor=pointer]
+      - generic [ref=e393]:
+        - generic [ref=e394]:
+          - img "Beard Balm" [ref=e395]
+          - generic [ref=e396]: In Stock
+        - generic [ref=e397]:
+          - paragraph [ref=e398]: Proraso
+          - heading "Beard Balm" [level=4] [ref=e399]
+          - generic [ref=e401]:
+            - button [ref=e402] [cursor=pointer]
+            - button [ref=e405] [cursor=pointer]
+            - button [ref=e408] [cursor=pointer]
+            - button [ref=e411] [cursor=pointer]
+            - button [ref=e414] [cursor=pointer]
+          - generic [ref=e417]:
+            - generic [ref=e418]: 380 Kč
+            - button [ref=e419] [cursor=pointer]
+      - generic [ref=e424]:
+        - generic [ref=e425]:
+          - img "Aftershave Lotion" [ref=e426]
+          - generic [ref=e427]: In Stock
+        - generic [ref=e428]:
+          - paragraph [ref=e429]: Clubman
+          - heading "Aftershave Lotion" [level=4] [ref=e430]
+          - generic [ref=e432]:
+            - button [ref=e433] [cursor=pointer]
+            - button [ref=e436] [cursor=pointer]
+            - button [ref=e439] [cursor=pointer]
+            - button [ref=e442] [cursor=pointer]
+            - button [ref=e445] [cursor=pointer]
+          - generic [ref=e448]:
+            - generic [ref=e449]: 290 Kč
+            - button [ref=e450] [cursor=pointer]
+  - generic [ref=e457]:
+    - generic [ref=e458]:
+      - generic [ref=e459]:
+        - heading "Prague District 1" [level=2] [ref=e460]
+        - heading "Visit The Shop" [level=3] [ref=e461]
+        - paragraph [ref=e462]: Located in the historic Vodičkova Street. A true gentlemen's sanctuary.
+      - generic [ref=e463]:
+        - generic [ref=e469]:
+          - paragraph [ref=e470]: Address
+          - paragraph [ref=e471]: Vodičkova 36, 110 00 Prague 1
+        - generic [ref=e476]:
+          - paragraph [ref=e477]: Phone
+          - paragraph [ref=e478]: +420 000 000 000
+        - generic [ref=e484]:
+          - paragraph [ref=e485]: Opening
+          - paragraph [ref=e486]: "MON-SUN: 10:00 - 22:00"
+        - generic [ref=e492]:
+          - paragraph [ref=e493]: Connect
+          - paragraph [ref=e494]: "@ironsteel_prague"
+      - generic [ref=e495]:
+        - link "Directions" [ref=e496] [cursor=pointer]:
+          - /url: "#"
+        - link "Book Now" [ref=e497] [cursor=pointer]:
+          - /url: "#"
+    - generic [ref=e499]:
+      - img "Prague Location" [ref=e500]
+      - generic [ref=e508]:
+        - paragraph [ref=e509]: Iron & Steel Prague 1
+        - paragraph [ref=e510]: Historic District • Complimentary Parking for Clients
+        - button "Open in Navigation" [ref=e511] [cursor=pointer]
+  - contentinfo [ref=e512]:
+    - generic [ref=e513]:
+      - generic [ref=e514]:
+        - generic [ref=e515]:
+          - text: IRON
+          - generic [ref=e516]: "&"
+          - text: STEEL
+        - paragraph [ref=e517]: Premium grooming sanctuary for the modern man. Crafting perfection in Prague since 2014. Join the elite.
+      - generic [ref=e518]:
+        - heading "Navigation" [level=5] [ref=e519]
+        - list [ref=e520]:
+          - listitem [ref=e521]:
+            - button "Services" [ref=e522] [cursor=pointer]
+          - listitem [ref=e523]:
+            - button "Barbers" [ref=e524] [cursor=pointer]
+          - listitem [ref=e525]:
+            - button "Gallery" [ref=e526] [cursor=pointer]
+          - listitem [ref=e527]:
+            - button "Shop" [ref=e528] [cursor=pointer]
+          - listitem [ref=e529]:
+            - button "Contacts" [ref=e530] [cursor=pointer]
+      - generic [ref=e531]:
+        - heading "Company" [level=5] [ref=e532]
+        - list [ref=e533]:
+          - listitem [ref=e534]:
+            - link "About Us" [ref=e535] [cursor=pointer]:
+              - /url: "#"
+          - listitem [ref=e536]:
+            - link "Privacy Policy" [ref=e537] [cursor=pointer]:
+              - /url: "#"
+          - listitem [ref=e538]:
+            - link "Terms of Service" [ref=e539] [cursor=pointer]:
+              - /url: "#"
+          - listitem [ref=e540]:
+            - link "Career" [ref=e541] [cursor=pointer]:
+              - /url: "#"
+          - listitem [ref=e542]:
+            - link "Gift Cards" [ref=e543] [cursor=pointer]:
+              - /url: "#"
+    - generic [ref=e544]:
+      - generic [ref=e545]:
+        - link [ref=e546] [cursor=pointer]:
+          - /url: "#"
+        - link "Twitter" [ref=e550] [cursor=pointer]:
+          - /url: "#"
+        - link "Facebook" [ref=e551] [cursor=pointer]:
+          - /url: "#"
+      - generic [ref=e552]:
+        - paragraph [ref=e553]: © 2024 IRON & STEEL PRAGUE. ALL RIGHTS RESERVED.
+        - button "STAFF LOGIN" [ref=e554] [cursor=pointer]
+  - button [ref=e555] [cursor=pointer]
+  - button "AI Stylist" [ref=e558] [cursor=pointer]
