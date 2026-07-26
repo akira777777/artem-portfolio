@@ -208,10 +208,10 @@ test("layout has no horizontal overflow at required responsive widths", async ({
   }
 });
 
-test("primary content remains readable without JavaScript", async ({ browser }) => {
+test("primary content remains readable without JavaScript", async ({ browser, baseURL }) => {
   const context = await browser.newContext({ javaScriptEnabled: false });
   const page = await context.newPage();
-  await page.goto("http://127.0.0.1:4173/");
+  await page.goto(baseURL || "http://127.0.0.1:4174/");
   await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
   await expect(page.locator(".project-card")).toHaveCount(5);
   await expect(page.getByRole("heading", { name: "Barbershop Iron & Steel" })).toBeVisible();

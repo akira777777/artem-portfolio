@@ -339,6 +339,7 @@
             data-tags="next react tailwind fullapp"
             data-keywords="barbershop booking services pricing landing page responsive"
             data-img="assets/previews/barber.webp"
+            data-gallery="assets/previews/barber.webp assets/previews/barber-detail.webp"
             data-status="public-demo"
             data-role="UI design and frontend implementation"
             data-challenge="Present services, team and pricing without slowing down the path to booking."
@@ -375,6 +376,7 @@
             data-tags="next ts tailwind seo fullapp"
             data-keywords="healthcare rehabilitation doctors programs documents reviews faq pricing routing"
             data-img="assets/previews/reba.webp"
+            data-gallery="assets/previews/reba.webp assets/previews/reba-detail.webp"
             data-status="public-demo"
             data-role="Information architecture and frontend implementation"
             data-challenge="Organize detailed treatment information for visitors who need clarity and reassurance."
@@ -412,6 +414,7 @@
             data-tags="next ts tailwind fullapp"
             data-keywords="travel concierge hotels flights excursions multilingual russian english enquiry"
             data-img="assets/previews/secrettravel.webp"
+            data-gallery="assets/previews/secrettravel.webp assets/previews/secrettravel-detail.webp"
             data-status="public-demo"
             data-role="Responsive frontend and multilingual content structure"
             data-challenge="Explain several concierge services while keeping the enquiry path easy to find."
@@ -449,6 +452,7 @@
             data-tags="next react fullapp"
             data-keywords="sports matches odds events dense data responsive dashboard interface"
             data-img="assets/previews/betz.webp"
+            data-gallery="assets/previews/betz.webp assets/previews/betz-detail.webp"
             data-status="public-demo"
             data-role="Data-dense frontend interface"
             data-challenge="Make a large amount of match and odds information easy to scan on different screens."
@@ -484,6 +488,7 @@
             data-tags="next ts fullapp"
             data-keywords="dental clinic healthcare services doctors appointment booking responsive"
             data-img="assets/previews/dental.webp"
+            data-gallery="assets/previews/dental.webp assets/previews/dental-detail.webp"
             data-status="public-demo"
             data-role="UI design and frontend implementation"
             data-challenge="Present clinical services and the doctor team in a calm interface with a clear appointment path."
@@ -731,7 +736,16 @@
           <svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 18L18 6M6 6l12 12"/></svg>
         </button>
       </div>
-      <div id="modalMedia" class="modal-media" hidden><img id="modalImage" src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" alt="" /></div>
+      <div id="modalMedia" class="modal-media" hidden>
+        <div class="media-chrome" aria-hidden="true">
+          <span class="chrome-dots"><i></i><i></i><i></i></span>
+          <span id="modalChromeUrl" class="chrome-url">demo.vercel.app</span>
+        </div>
+        <div class="modal-image-wrapper">
+          <img id="modalImage" src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" alt="" />
+        </div>
+        <section id="modalThumbnails" class="modal-thumbnails" hidden aria-label="Project screenshot miniatures"></section>
+      </div>
       <p id="modalDescription" class="modal-desc"></p>
       <dl class="modal-meta">
         <div id="modalRoleRow"><dt>role</dt><dd id="modalRole"></dd></div>

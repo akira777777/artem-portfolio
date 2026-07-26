@@ -468,6 +468,9 @@ function readProject(card) {
     /** @type {Project["status"]} */ (
       validStatuses.includes(rawStatus) ? rawStatus : "public-demo"
     );
+  const chromeUrl = card.querySelector(".chrome-url")?.textContent?.trim() || "";
+  const galleryRaw = card.dataset.gallery || card.dataset.img || "";
+  const gallery = galleryRaw.split(/\s+/).filter(Boolean);
 
   return {
     id: card.dataset.projectId || title.toLowerCase().replace(/[^a-z0-9]+/g, "-"),
@@ -478,6 +481,8 @@ function readProject(card) {
     stack,
     keywords: (card.dataset.keywords || "").split(/\s+/).filter(Boolean),
     image: card.dataset.img || "",
+    gallery: gallery.length ? gallery : [card.dataset.img || ""],
+    chromeUrl,
     liveUrl: liveLink instanceof HTMLAnchorElement ? liveLink.href : undefined,
     repositoryUrl: undefined,
     featured: card.classList.contains("featured"),
@@ -499,6 +504,8 @@ const modalTechnologies = document.getElementById("modalTechnologies");
 const modalLink = document.getElementById("modalLink");
 const modalMedia = document.getElementById("modalMedia");
 const modalImage = document.getElementById("modalImage");
+const modalChromeUrl = document.getElementById("modalChromeUrl");
+const modalThumbnails = document.getElementById("modalThumbnails");
 const modalRole = document.getElementById("modalRole");
 const modalRoleRow = document.getElementById("modalRoleRow");
 const modalOutcome = document.getElementById("modalOutcome");
@@ -545,14 +552,69 @@ function showProject(project, trigger) {
     });
   }
 
+  if (modalChromeUrl) {
+    modalChromeUrl.textContent =
+      project.chromeUrl ||
+      (project.liveUrl ? new URL(project.liveUrl).hostname : "demo.vercel.app");
+  }
+
+  const galleryList =
+    project.gallery && project.gallery.length
+      ? project.gallery
+      : project.image
+        ? [project.image]
+        : [];
+
   if (
     modalImage instanceof HTMLImageElement &&
     modalMedia instanceof HTMLElement &&
-    project.image
+    galleryList.length > 0
   ) {
-    modalImage.src = project.image;
-    modalImage.alt = `Preview of ${project.title}`;
+    const wrapper = modalImage.closest(".modal-image-wrapper");
+    wrapper?.querySelector(".project-image-fallback")?.remove();
+    modalImage.hidden = false;
+
+    const setPreviewImage = (/** @type {string} */ src, /** @type {string} */ altText) => {
+      if (!(modalImage instanceof HTMLImageElement)) return;
+      modalImage.src = src;
+      modalImage.alt = altText;
+    };
+
+    setPreviewImage(galleryList[0], `Preview of ${project.title}`);
     modalMedia.hidden = false;
+
+    if (modalThumbnails) {
+      modalThumbnails.replaceChildren();
+      if (galleryList.length > 1) {
+        galleryList.forEach((imgSrc, index) => {
+          const btn = document.createElement("button");
+          btn.type = "button";
+          btn.className = `modal-thumb-btn ${index === 0 ? "active" : ""}`;
+          btn.setAttribute(
+            "aria-label",
+            `View thumbnail preview ${index + 1} for ${project.title}`
+          );
+
+          const thumbImg = document.createElement("img");
+          thumbImg.src = imgSrc;
+          thumbImg.alt = `${project.title} miniature ${index + 1}`;
+          thumbImg.loading = "lazy";
+
+          btn.appendChild(thumbImg);
+          btn.addEventListener("click", () => {
+            setPreviewImage(imgSrc, `Preview ${index + 1} of ${project.title}`);
+            modalThumbnails.querySelectorAll(".modal-thumb-btn").forEach((b, i) => {
+              b.classList.toggle("active", i === index);
+            });
+          });
+
+          modalThumbnails.appendChild(btn);
+        });
+        modalThumbnails.hidden = false;
+      } else {
+        modalThumbnails.hidden = true;
+      }
+    }
   } else if (modalMedia instanceof HTMLElement) {
     modalMedia.hidden = true;
   }
@@ -580,6 +642,20 @@ projectEntries.forEach(({ card, project }) => {
 if (closeModalButton instanceof HTMLButtonElement && projectModal instanceof HTMLDialogElement) {
   closeModalButton.dataset.autofocus = "true";
   closeModalButton.addEventListener("click", () => closeDialog(projectModal));
+}
+
+if (modalImage instanceof HTMLImageElement) {
+  modalImage.addEventListener("error", () => {
+    const wrapper = modalImage.closest(".modal-image-wrapper");
+    if (!(wrapper instanceof HTMLElement)) return;
+    modalImage.hidden = true;
+    if (!wrapper.querySelector(".project-image-fallback")) {
+      const fallback = document.createElement("span");
+      fallback.className = "project-image-fallback";
+      fallback.textContent = "Preview temporarily unavailable";
+      wrapper.appendChild(fallback);
+    }
+  });
 }
 
 document.querySelectorAll(".project-media img").forEach((element) => {

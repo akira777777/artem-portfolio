@@ -7,6 +7,8 @@ type Project = {
   stack: string[];
   keywords: string[];
   image: string;
+  gallery?: string[];
+  chromeUrl?: string;
   liveUrl?: string;
   repositoryUrl?: string;
   featured?: boolean;
@@ -14,3 +16,4 @@ type Project = {
   challenge?: string;
   solution?: string;
 };
+
