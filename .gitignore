@@ -4,6 +4,7 @@ node_modules/
 dist/
 playwright-report/
 test-results/
+tmp/pdfs/
 .coverage
 .pytest_cache/
 .playwright-mcp/
